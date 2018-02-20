@@ -11,7 +11,7 @@
 Download [kickstart.sh](https://raw.githubusercontent.com/c7lab/kickstart/master/opt/kickstart.sh) and save
 it to your projects main directory.
 
-Create a `.kickstart.yml` with at least:
+Create a `.kick.yml` with at least:
 
 ```
 version: 1
