@@ -1,0 +1,21 @@
+image: docker:latest
+stages:
+  - build
+  - deploy
+
+
+build_docker_image:
+  stage: build
+  script:
+    - . ./run.sh deploy
+  only:
+  - master
+
+deploy_prod:
+  stage: deploy
+  script:
+    - . ./run.sh move stable
+  when: manual
+  only:
+  - master
+

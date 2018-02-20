@@ -1,0 +1,26 @@
+image: dermatthes/docker-build:latest
+stages:
+  - test
+  - build
+  - deploy
+
+
+unittest:
+  stage: test
+  script:
+    - . ./run.sh unittest
+
+testing:
+  stage: build
+  script:
+    - . ./run.sh deploy
+  only:
+  - master
+
+stable:
+  stage: deploy
+  script:
+    - . ./run.sh deploy stable
+  when: manual
+  only:
+  - master

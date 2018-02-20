@@ -1,0 +1,35 @@
+{
+  "name": "continue/docker-skel",
+  "description": "Continue Docker Skeleton",
+  "keywords": ["Online Shop"],
+  "type": "project",
+  "license": "Proprietary",
+  "authors": [
+    { "name": "Alina Gitzen", "email": "gitzen@continue.de" },
+    { "name": "Mike Kaiser", "email": "kaiser@continue.de" },
+    { "name": "Laurenz Gohr", "email": "gohr@continue.de" },
+    { "name": "Matthias Leuffen", "email": "leuffen@continue.de" }
+  ],
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://packages.continue.de/"
+    }
+  ],
+  "require": {
+  },
+  "require-dev": {
+  },
+  "scripts": {
+    "post-create-project-cmd": [
+         "echo $PROJECT_NAME"
+    ]
+  },
+  "autoload": {
+    "psr-4": {
+    },
+    "files": [
+    ]
+  },
+  "minimum-stability": "dev"
+}

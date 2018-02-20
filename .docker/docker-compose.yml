@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  pipf-php:
+    build:
+      context: ../
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    networks:
+      - ha-net-internal
+
+#volumes:
+#  mysql_shop2pro_dev:
+
+networks:
+  ha-net-internal:
+    external: true

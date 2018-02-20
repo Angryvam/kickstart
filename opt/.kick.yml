@@ -1,0 +1,24 @@
+kick: 1
+
+command:
+  init:
+  dev:
+    - "D:sleep 10000"
+    - "D:sleep 1000"
+
+
+provision:
+  mysql-host:
+    module: "mysql"
+    format: "typeorm"
+    file: "/cfg/mysql.json"
+  session-cache:
+    module: "redis"
+
+deploy:
+  - cluster: kiwi.some.de
+    path: "//some.domain.de/path"
+    version: "stable"
+  - "//test.some.domain.de/path": "*"
+
+

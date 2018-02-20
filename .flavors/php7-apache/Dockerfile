@@ -1,0 +1,1 @@
+FROM dermatthes/kickstart:base
