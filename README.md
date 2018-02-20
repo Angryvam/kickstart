@@ -2,8 +2,9 @@
 
 | Flavor  | Software                                    | Support                      |    |
 |---------|---------------------------------------------|------------------------------|----|
-| gaia    | apache2, php7.0, imagemagick, xsl           | [details](.flavors/gaia/)    | [![Docker Pulls](https://img.shields.io/docker/pulls/continue/kickstart:gaia.svg)](https://hub.docker.com/r/continue/kickstart/) [![Docker layers](https://images.microbadger.com/badges/image/continue/kickstart:gaia.svg)](https://microbadger.com/images/continue/kickstart) |
-| erebos  | nodejs, angular-cli (5)                     | [details](.flavors/erebos/)  |
+| <base>  | <base container>                            |                              | [![Docker Pulls](https://img.shields.io/docker/pulls/continue/kickstart.svg)](https://hub.docker.com/r/continue/kickstart/) [![Docker layers](https://images.microbadger.com/badges/image/continue/kickstart.svg)](https://microbadger.com/images/continue/kickstart) |
+| gaia    | apache2, php7.0, imagemagick, xsl           | [details](.flavors/gaia/)    | [![Docker Pulls](https://img.shields.io/docker/pulls/continue/kickstart:gaia.svg)](https://hub.docker.com/r/continue/kickstart/) [![Docker layers](https://images.microbadger.com/badges/image/continue/kickstart:gaia.svg)](https://microbadger.com/images/continue/kickstart:gaia) |
+| erebos  | nodejs, angular-cli (5)                     | [details](.flavors/erebos/)  | [![Docker Pulls](https://img.shields.io/docker/pulls/continue/kickstart:erebos.svg)](https://hub.docker.com/r/continue/kickstart/) [![Docker layers](https://images.microbadger.com/badges/image/continue/kickstart:erebos.svg)](https://microbadger.com/images/continue/kickstart:erebos) |
 
 ## Quickstart with Kickstart
 
