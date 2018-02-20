@@ -1,1 +1,1 @@
-# Kickstart flavor: php7 apache2
+# Kickstart flavor: nodejs angular-cli 
