@@ -8,7 +8,7 @@
 #
 # Copy this file into your project folder
 #
-# See https://github.com/dermatthes/pipf-php for more information
+# See https://github.com/continue/kickstart for more information
 
 
 ## Set the correct revision
@@ -41,9 +41,9 @@ export COLOR_LIGHT_GRAY='\e[0;37m'
 command -v curl >/dev/null 2>&1 || { echo -e "$COLOR_LIGHT_RED I require curl but it's not installed (run: 'apt-get install curl').  Aborting.$COLOR_NC" >&2; exit 1; }
 command -v docker >/dev/null 2>&1 || { echo -e "$COLOR_LIGHT_RED I require docker but it's not installed (see http://docker.io).  Aborting.$COLOR_NC" >&2; exit 1; }
 
-KICKSTART_UPGRADE_URL="https://raw.githubusercontent.com/dermatthes/pipf-php/master/opt/kickstart.sh"
-KICKSTART_RELEASE_NOTES_URL="https://raw.githubusercontent.com/dermatthes/pipf-php/master/opt/kickstart-release-notes.txt"
-KICKSTART_VERSION_URL="https://raw.githubusercontent.com/dermatthes/pipf-php/master/opt/kickstart-release.txt"
+KICKSTART_UPGRADE_URL="https://raw.githubusercontent.com/c7lab/kickstart/master/opt/kickstart.sh"
+KICKSTART_RELEASE_NOTES_URL="https://raw.githubusercontent.com/c7lab/kickstart/master/opt/kickstart-release-notes.txt"
+KICKSTART_VERSION_URL="https://raw.githubusercontent.com/c7lab/kickstart/master/opt/kickstart-release.txt"
 
 KICKSTART_CURRENT_VERSION="1.0.6"
 
@@ -101,7 +101,7 @@ _print_header() {
         echo "|                                                                                 |"
     fi;
 
-    echo "| More information: https://github.com/dermatthes/pipf-php                        |"
+    echo "| More information: https://github.com/continue/kickstart                         |"
     echo "| Or ./kickstart.sh help                                                          |"
     echo "+---------------------------------------------------------------------------------+"
 
