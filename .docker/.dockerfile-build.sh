@@ -9,11 +9,6 @@ set -e
 
 apt-get update
 DEBIAN_FRONTEND=noninteractive
-
-
-CONF_VERSION_NODEJS="latest"
-CONF_VERSION_ANGULAR="latest"
-
 ################################################################
 ## Install-Anweisungen ab hier einfügen
 ################################################################
@@ -26,15 +21,8 @@ CONF_VERSION_ANGULAR="latest"
 
 apt-get install --no-install-recommends -q -y vim bash-completion php7.0 \
     php7.0-xml php7.0-json php7.0-mbstring composer php7.0-zip curl \
-    git sudo php-mongodb npm less telnet
+    git sudo less telnet
 
-echo "Upgrading to nodejs:$CONF_VERSION_NODEJS..."
-npm install -g n
-n $CONF_VERSION_NODEJS
-
-
-echo "Installing @angular/cli:$CONF_VERSION_ANGULAR...";
-npm install -g @angular/cli nodemon
 
 
 ####################################################################
