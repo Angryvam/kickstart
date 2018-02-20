@@ -24,7 +24,7 @@ To select a special flavor select
 
 ```
 version: 1
-from: continue/kickstart:gaia
+from: continue/kickstart-flavor:gaia
 ```
 
 

@@ -1,1 +1,0 @@
-# Kickstart flavor: nodejs angular-cli 
