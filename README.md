@@ -87,3 +87,7 @@ define("DEBUG", true|false);
     ProxyPreserveHost Off
 </Location>
 ```
+
+## Naming of flavors
+
+Flavor names derive from greek mystical names [click](https://de.wikipedia.org/wiki/Griechische_Mythologie)
