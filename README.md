@@ -1,15 +1,30 @@
 # kickstart - Autoprovisioning Microservice Container
 
-
-| Version | Software | Support |
-|---------|----------|---------|
-| rev1    | ubuntu16.04, Angular 5, PHP 7.2  |         |
-
+| Flavor  | Software                                    | Support                      |
+|---------|---------------------------------------------|------------------------------|
+| gaia    | apache2, php7.0, imagemagick, xsl           | [details](.flavors/gaia/)    |
+| erebos  | nodejs, angular-cli (5)                     | [details](.flavors/erebos/)  |
 
 ## Quickstart with Kickstart
 
 Download [kickstart.sh](https://raw.githubusercontent.com/c7lab/kickstart/master/opt/kickstart.sh) and save
 it to your projects main directory.
+
+Create a `.kickstart.yml` with at least:
+
+```
+version: 1
+from: continue/kickstart
+```
+
+Run `./kickstart.sh` - the container should start.
+
+To select a special flavor select
+
+```
+version: 1
+from: continue/kickstart:gaia
+```
 
 
 ## Provides an standarized environment for php microservices
