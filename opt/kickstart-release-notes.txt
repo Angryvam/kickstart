@@ -1,5 +1,5 @@
-Kickstart Release notes:
-
-Current Version: 1.0.5 (2018-02-19)
+New in version: 1.0.7 (2018-02-21)
 
 - Refactored internal structure
+- Moved to new repository
+- Changed name

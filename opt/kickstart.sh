@@ -46,7 +46,7 @@ KICKSTART_UPGRADE_URL="https://raw.githubusercontent.com/c7lab/kickstart/master/
 KICKSTART_RELEASE_NOTES_URL="https://raw.githubusercontent.com/c7lab/kickstart/master/opt/kickstart-release-notes.txt"
 KICKSTART_VERSION_URL="https://raw.githubusercontent.com/c7lab/kickstart/master/opt/kickstart-release.txt"
 
-KICKSTART_CURRENT_VERSION="1.0.6"
+KICKSTART_CURRENT_VERSION="1.0.7"
 
 
 
