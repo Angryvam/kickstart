@@ -19,9 +19,8 @@ DEBIAN_FRONTEND=noninteractive
 # Standard-Install
 ################################################################
 
-apt-get install --no-install-recommends -q -y vim bash-completion php7.0 \
-    php7.0-xml php7.0-json php7.0-mbstring composer php7.0-zip curl \
-    git sudo less telnet
+apt-get install --no-install-recommends -q -y vim nano bash-completion php7.0 \
+    php7.0-json composer php7.0-zip curl git sudo less telnet
 
 
 

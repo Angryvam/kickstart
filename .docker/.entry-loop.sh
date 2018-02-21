@@ -10,8 +10,6 @@ set -e
 ###############################################################
 
 
-service apache2 start
-
 while [ true ]
 do
     sleep 100
