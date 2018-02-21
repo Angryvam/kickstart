@@ -41,6 +41,7 @@ export COLOR_LIGHT_GRAY='\e[0;37m'
 command -v curl >/dev/null 2>&1 || { echo -e "$COLOR_LIGHT_RED I require curl but it's not installed (run: 'apt-get install curl').  Aborting.$COLOR_NC" >&2; exit 1; }
 command -v docker >/dev/null 2>&1 || { echo -e "$COLOR_LIGHT_RED I require docker but it's not installed (see http://docker.io).  Aborting.$COLOR_NC" >&2; exit 1; }
 
+KICKSTART_DOC_URL="https://github.com/c7lab/kickstart/"
 KICKSTART_UPGRADE_URL="https://raw.githubusercontent.com/c7lab/kickstart/master/opt/kickstart.sh"
 KICKSTART_RELEASE_NOTES_URL="https://raw.githubusercontent.com/c7lab/kickstart/master/opt/kickstart-release-notes.txt"
 KICKSTART_VERSION_URL="https://raw.githubusercontent.com/c7lab/kickstart/master/opt/kickstart-release.txt"
@@ -48,22 +49,7 @@ KICKSTART_VERSION_URL="https://raw.githubusercontent.com/c7lab/kickstart/master/
 KICKSTART_CURRENT_VERSION="1.0.6"
 
 
-if [ ! -f ".kick.yml" ]
-then
-    echo -e $COLOR_RED "[ERR] Missing .kick.yml file." $COLOR_NC
-    exit 2
-fi
 
-
-
-# Parse .kick.yml for line from: "docker/container:version"
-USE_PIPF_VERSION=`cat .kick.yml | sed -n 's/from\: "\(.\+\)\"/\1/p'`
-
-if [ "$USE_PIPF_VERSION" == "" ]
-then
-    echo -e $COLOR_RED "[ERR] .kick.yml file does not include 'from:' - directive." $COLOR_NC
-    exit 2
-fi;
 
 _usage() {
     echo -e $COLOR_NC "Usage: $0 [<command>]
@@ -71,6 +57,8 @@ _usage() {
     COMMANDS:
 
         $0 upgrade          Search/Install newer version of kickstart
+
+        $0 run
 
     "
     exit 1
@@ -169,6 +157,29 @@ run_container() {
     echo -e $COLOR_RED "    PIPF Exit - Goodbye" $COLOR_NC
     exit 0;
 }
+
+
+if [ ! -f ".kick.yml" ]
+then
+    echo -e $COLOR_RED "[ERR] Missing .kick.yml file." $COLOR_NC
+    ask_user "Do you want to create a new .kick.yml-file?"
+    echo "version: 1" > ./.kick.yml
+    echo 'from: "continue/kickstart:latest"' >> ./.kick.yml
+    echo "File created. See $KICKSTART_DOC_URL for more information";
+    exit 2
+fi
+
+
+
+# Parse .kick.yml for line from: "docker/container:version"
+USE_PIPF_VERSION=`cat .kick.yml | sed -n 's/from\: "\(.\+\)\"/\1/p'`
+
+if [ "$USE_PIPF_VERSION" == "" ]
+then
+    echo -e $COLOR_RED "[ERR] .kick.yml file does not include 'from:' - directive." $COLOR_NC
+    exit 2
+fi;
+
 
 case  "$1" in
     "")

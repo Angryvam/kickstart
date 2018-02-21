@@ -15,11 +15,27 @@
 Download [kickstart.sh](https://raw.githubusercontent.com/c7lab/kickstart/master/opt/kickstart.sh) and save
 it to your projects main directory.
 
-Create a `.kick.yml` with at least:
+Or execute:
+
+```
+curl -o kickstart.sh "https://raw.githubusercontent.com/c7lab/kickstart/master/opt/kickstart.sh" && chmod +x kickstart.sh
+```
+
+run kickstart:
+
+```
+./kickstart.sh
+```
+
+It will create an empty `.kick.yml` file in the current directory. You might edit
+at least the `from:`-Line.
+
+
+## .kick.yml - Kickstart configuration file.
 
 ```
 version: 1
-from: continue/kickstart
+from: "continue/kickstart"
 ```
 
 Run `./kickstart.sh` - the container should start.
