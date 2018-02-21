@@ -1,13 +1,13 @@
 # kickstart - Autoprovisioning Microservice Container
 
-| Flavor  | Pull-Name                                  | Software                                    | Support                      |    |
-|---------|--------------------------------------------|---------------------------------------------|------------------------------|----|
-|         | `from: "continue/kickstart"`               | <base container>                            |                              | [![Docker Pulls](https://img.shields.io/docker/pulls/continue/kickstart.svg)](https://hub.docker.com/r/continue/kickstart/) [![Docker layers](https://images.microbadger.com/badges/image/continue/kickstart.svg)](https://microbadger.com/images/continue/kickstart) |
-| gaia    | `from: "continue/kickstart-flavor:gaia"`   | apache2, php7.0, imagemagick, xsl           | [details](.flavors/gaia/)    | [![Docker Pulls](https://img.shields.io/docker/pulls/continue/kickstart-flavor:gaia.svg)](https://hub.docker.com/r/continue/kickstart/) [![Docker layers](https://images.microbadger.com/badges/image/continue/kickstart-flavor:gaia.svg)](https://microbadger.com/images/continue/kickstart-flavor:gaia) |
-| erebos  | `from: "continue/kickstart-flavor:erebos"` | nodejs, angular-cli (5)                     | [details](.flavors/erebos/)  | [![Docker Pulls](https://img.shields.io/docker/pulls/continue/kickstart-flavor:erebos.svg)](https://hub.docker.com/r/continue/kickstart/) [![Docker layers](https://images.microbadger.com/badges/image/continue/kickstart-flavor:erebos.svg)](https://microbadger.com/images/continue/kickstart-flavor:erebos) |
+| Flavor  | Pull-Name                          | Software                                    | Support                      |    |
+|---------|------------------------------------|---------------------------------------------|------------------------------|----|
+|         | `continue/kickstart`               | <base container>                            |                              | [![Docker Pulls](https://img.shields.io/docker/pulls/continue/kickstart.svg)](https://hub.docker.com/r/continue/kickstart/) [![Docker layers](https://images.microbadger.com/badges/image/continue/kickstart.svg)](https://microbadger.com/images/continue/kickstart) |
+| gaia    | `continue/kickstart-flavor:gaia`   | apache2, php7.0, imagemagick, xsl           | [details](.flavors/gaia/)    | [![Docker Pulls](https://img.shields.io/docker/pulls/continue/kickstart-flavor:gaia.svg)](https://hub.docker.com/r/continue/kickstart/) [![Docker layers](https://images.microbadger.com/badges/image/continue/kickstart-flavor:gaia.svg)](https://microbadger.com/images/continue/kickstart-flavor:gaia) |
+| erebos  | `continue/kickstart-flavor:erebos` | nodejs, angular-cli (5)                     | [details](.flavors/erebos/)  | [![Docker Pulls](https://img.shields.io/docker/pulls/continue/kickstart-flavor:erebos.svg)](https://hub.docker.com/r/continue/kickstart/) [![Docker layers](https://images.microbadger.com/badges/image/continue/kickstart-flavor:erebos.svg)](https://microbadger.com/images/continue/kickstart-flavor:erebos) |
 
 
-*See [continue/kickstart-flavor](https://github.com/c7lab/kickstart-flavor) for ready-to-use containers.*
+***See [continue/kickstart-flavor](https://github.com/c7lab/kickstart-flavor) for ready-to-use containers.***
 
 
 ## Quickstart with Kickstart
