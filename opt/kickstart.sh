@@ -66,15 +66,24 @@ _usage() {
 
 
 _print_header() {
-    echo -e $COLOR_WHITE '
-   ____ ___ ____  _____   ____  _______     _______ _     ___  ____  _____ ____
-  |  _ \_ _|  _ \|  ___| |  _ \| ____\ \   / / ____| |   / _ \|  _ \| ____|  _ \
-  | |_) | || |_) | |_    | | | |  _|  \ \ / /|  _| | |  | | | | |_) |  _| | |_) |
-  |  __/| ||  __/|  _|   | |_| | |___  \ V / | |___| |__| |_| |  __/| |___|  _ <
-  |_|  |___|_|   |_|     |____/|_____|  \_/  |_____|_____\___/|_|   |_____|_| \_\
-' "
-+---------------------------------------------------------------------------------+
-| PIPF Kickstart - DEVELOPER MODE                                                 |
+    echo -e $COLOR_WHITE "
+
+ C7Lab's
+   ▄█   ▄█▄  ▄█   ▄████████    ▄█   ▄█▄    ▄████████     ███        ▄████████    ▄████████     ███
+  ███ ▄███▀ ███  ███    ███   ███ ▄███▀   ███    ███ ▀█████████▄   ███    ███   ███    ███ ▀█████████▄
+  ███▐██▀   ███▌ ███    █▀    ███▐██▀     ███    █▀     ▀███▀▀██   ███    ███   ███    ███    ▀███▀▀██
+ ▄█████▀    ███▌ ███         ▄█████▀      ███            ███   ▀   ███    ███  ▄███▄▄▄▄██▀     ███   ▀
+▀▀█████▄    ███▌ ███        ▀▀█████▄    ▀███████████     ███     ▀███████████ ▀▀███▀▀▀▀▀       ███
+  ███▐██▄   ███  ███    █▄    ███▐██▄            ███     ███       ███    ███ ▀███████████     ███
+  ███ ▀███▄ ███  ███    ███   ███ ▀███▄    ▄█    ███     ███       ███    ███   ███    ███     ███
+  ███   ▀█▀ █▀   ████████▀    ███   ▀█▀  ▄████████▀     ▄████▀     ███    █▀    ███    ███    ▄████▀
+  ▀                           ▀                                                 ███    ███
+                                                                                       running container
+
+  " $COLOR_YELLOW "
+
++-------------------------------------------------------------------------------------------------------+
+| C7Lab Kickstart - DEVELOPER MODE                                                                      |
 | Version: $KICKSTART_CURRENT_VERSION
 | Flavour: $USE_PIPF_VERSION (defined in 'from:'-section of .kick.yml)"
 
@@ -83,15 +92,15 @@ _print_header() {
     KICKSTART_NEWEST_VERSION=`curl -s "$KICKSTART_VERSION_URL"`
     if [ "$KICKSTART_NEWEST_VERSION" != "$KICKSTART_CURRENT_VERSION" ]
     then
-        echo "|                                                                                 |"
+        echo "|                                                           "
         echo "| UPDATE AVAILABLE: Head Version: $KICKSTART_NEWEST_VERSION"
-        echo "| To Upgrade Version: Run ./kickstart.sh upgrade                                  |"
-        echo "|                                                                                 |"
+        echo "| To Upgrade Version: Run ./kickstart.sh upgrade                                  "
+        echo "|                                                                                 "
     fi;
 
-    echo "| More information: https://github.com/continue/kickstart                         |"
-    echo "| Or ./kickstart.sh help                                                          |"
-    echo "+---------------------------------------------------------------------------------+"
+    echo "| More information: https://github.com/continue/kickstart                         "
+    echo "| Or ./kickstart.sh help                                                                               |"
+    echo "+------------------------------------------------------------------------------------------------------+"
 
 }
 
