@@ -28,12 +28,4 @@ then
 fi;
 
 
-echo '<?php ' > /etc/config.php
-if [ "$PULL_URL" == "" ]
-then
-    echo 'define("DEBUG", true);' >> /etc/config.php
-else
-    echo 'define("DEBUG", false);' >> /etc/config.php
-fi;
-echo "define('ROOT_URL', '$ROOT_URL');" >> /etc/config.php
 
