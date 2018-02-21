@@ -32,7 +32,7 @@ from: continue/kickstart-flavor:gaia
 ```
 
 
-## Provides an standarized environment for php microservices
+## Provides an rapid development environment for php microservices
 
 - Fixed Host/Path-URL: https://<branch>.<service-name>.<namespace>.sf.com
 - Configuration switch for Development
