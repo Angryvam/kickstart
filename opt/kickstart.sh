@@ -78,10 +78,8 @@ _print_header() {
   ███ ▀███▄ ███  ███    ███   ███ ▀███▄    ▄█    ███     ███       ███    ███   ███    ███     ███
   ███   ▀█▀ █▀   ████████▀    ███   ▀█▀  ▄████████▀     ▄████▀     ███    █▀    ███    ███    ▄████▀
   ▀                           ▀                                                 ███    ███
-                                                                                       running container
-
+                                                                                      happy containers
   " $COLOR_YELLOW "
-
 +-------------------------------------------------------------------------------------------------------+
 | C7Lab Kickstart - DEVELOPER MODE                                                                      |
 | Version: $KICKSTART_CURRENT_VERSION
@@ -99,8 +97,8 @@ _print_header() {
     fi;
 
     echo "| More information: https://github.com/continue/kickstart                         "
-    echo "| Or ./kickstart.sh help                                                                               |"
-    echo "+------------------------------------------------------------------------------------------------------+"
+    echo "| Or ./kickstart.sh help                                                                                |"
+    echo "+-------------------------------------------------------------------------------------------------------+"
 
 }
 
@@ -139,7 +137,7 @@ ask_user() {
 
 
 run_container() {
-    echo -e $COLOR_GREEN "Loading container '$USE_PIPF_VERSION'..."
+    echo -e $COLOR_GREEN"Loading container '$USE_PIPF_VERSION'..."
     docker pull "$USE_PIPF_VERSION"
 
     docker rm $CONTAINER_NAME
