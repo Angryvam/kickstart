@@ -166,7 +166,8 @@ then
     echo "version: 1" > ./.kick.yml
     echo 'from: "continue/kickstart:latest"' >> ./.kick.yml
     echo "File created. See $KICKSTART_DOC_URL for more information";
-    exit 2
+    echo ""
+    sleep 2
 fi
 
 

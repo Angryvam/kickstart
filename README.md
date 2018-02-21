@@ -13,15 +13,13 @@
 ## Quickstart with Kickstart
 
 Download [kickstart.sh](https://raw.githubusercontent.com/c7lab/kickstart/master/opt/kickstart.sh) and save
-it to your projects main directory.
-
-Or execute:
+it to your projects main directory:
 
 ```
 curl -o kickstart.sh "https://raw.githubusercontent.com/c7lab/kickstart/master/opt/kickstart.sh" && chmod +x kickstart.sh
 ```
 
-run kickstart:
+Run kickstart:
 
 ```
 ./kickstart.sh
