@@ -32,6 +32,8 @@ ENV TIMEZONE Europe/Berlin
 ENV PULL_URL ""
 ENV ROOT_URL ""
 
+ENV KICKSTART_HYPERVISE_HOST="http://kickstart-hypervise/"
+
 ENV DEV_CONTAINER_NAME "unnamed"
 ENV DEV_UID "1000"
 ENV DEV_TTYID "xXx"

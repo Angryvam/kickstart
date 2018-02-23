@@ -23,7 +23,6 @@ class ExecBox
 
     public function runBg ($cmd)
     {
-        $curDir = getcwd();
         chdir($this->workingDir);
         if (preg_match("/^D\:(.*)$/", $cmd, $matches)) {
             $cmd = $matches[1];
@@ -39,11 +38,10 @@ class ExecBox
             system($cmd, $ret);
             if ($ret != 0) {
                 Out::fail("Command", $cmd, "returned exit-code: $ret");
-                chdir($curDir);
                 exit ($ret);
             }
         }
-        chdir($curDir);
+
     }
 
 
