@@ -9,6 +9,7 @@
 namespace Kick;
 
 
+use Symfony\Component\Yaml\Exception\ParseException;
 use Symfony\Component\Yaml\Yaml;
 
 class KickFacet
@@ -26,7 +27,12 @@ class KickFacet
         if ($startYamlFileName === null)
             $startYamlFileName = "/opt/.kick.yml";
         $this->workingDir = dirname($startYamlFileName);
-        $this->config = Yaml::parseFile($startYamlFileName);
+        try {
+            $this->config = Yaml::parseFile($startYamlFileName);
+        } catch (ParseException $e) {
+            Out::fail("Error parsing '.kick.yml': " . $e->getMessage());
+            throw $e;
+        }
 
         if (file_exists(self::CONF_STATE_FILE)) {
             $this->execBox = unserialize(
