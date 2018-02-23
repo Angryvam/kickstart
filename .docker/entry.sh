@@ -52,6 +52,7 @@ then
     usermod -u $DEV_UID user
     chown -R user /home/user
     export HOME=/home/user
+    echo "user   ALL = (ALL) NOPASSWD:   ALL" >> /etc/sudoers
 
     echo "[entry.sh] + kick init"
     sudo -E -s -u user kick init
@@ -72,7 +73,7 @@ then
     echo -e $COLOR_GREEN"Container ready..."
     echo -e $COLOR_NC
 
-    echo "user   ALL = (ALL) NOPASSWD:   ALL" >> /etc/sudoers
+
 
 
 
