@@ -7,6 +7,7 @@ set -e
 ## Execute after .dockerfile-build.sh
 ####################################################################
 
+
 echo "Linking kick..."
 ln -s /kicksrc/bin/kick /usr/bin/kick
 composer install -d /kicksrc
