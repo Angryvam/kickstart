@@ -2,6 +2,8 @@
 
 # Installation in flavored container
 
+set -e
+
 
 apt-get install -y php-cli curl zip composer
 
@@ -16,6 +18,6 @@ fi;
 
 
 echo "Running kickstart install scripts (container/build.sh)..."
-/kickstart/container/build.sh
+. /kickstart/container/build.sh
 
 echo "Done."
