@@ -11,9 +11,7 @@ if [[ ! -e /kickstart ]]
 then
     echo "/kickstart not existing... starting installation"
     mkdir /kickstart
-
-    curl -o /kickstart/kick.zip "https://github.com/c7lab/kickstart/archive/master.zip"
-    unzip /kickstart/kick.zip
+    git clone --single-branch --depth 1 "https://github.com/c7lab/kickstart.git" /kickstart
 fi;
 
 
