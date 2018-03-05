@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 ## set -e: Stop on error
 set -e
 
@@ -25,4 +26,5 @@ echo 'export PS1=""' >> /home/user/.bashrc
 echo "cd /opt" >> /home/user/.bashrc
 
 chown user:root /opt
+
 
