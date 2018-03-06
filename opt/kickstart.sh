@@ -158,7 +158,7 @@ run_container() {
         -e "DEV_UID=$UID"                               \
         -p 80:4200                                      \
         --name $CONTAINER_NAME                          \
-        "$USE_PIPF_VERSION" $ARGUMENT
+        "$USE_PIPF_VERSION" "$ARGUMENT"
 
     status=$?
     if [[ $status -ne 0 ]]
@@ -231,18 +231,16 @@ while [ "$#" -gt 0 ]; do
 
     -*) echo "unknown option: $1" >&2; exit 1;;
     *)
-        ARGUMENT=$1;
-        if [[ $ARGUMENT="" ]]
-        then
-            ARGUMENT="dev";
-        fi;
-        _print_header
-        if [ `docker ps | grep "$CONTAINER_NAME" | wc -l` -gt 0 ]
-        then
-            run_shell
-        fi;
-        run_container
-        shift 1;;
+    break;
+
   esac
 done
 
+ARGUMENT=$1;
+
+_print_header
+if [ `docker ps | grep "$CONTAINER_NAME" | wc -l` -gt 0 ]
+then
+    run_shell
+fi;
+run_container

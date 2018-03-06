@@ -49,7 +49,7 @@ echo "[entry.sh] + kick init"
 sudo -E -s -u user kick init
 
 
-if [[ $@!='' ]]
+if [[ $1<>'' ]]
 then
     echo "[entry.sh] + kick $@"
     sudo -E -s -u user kick $@

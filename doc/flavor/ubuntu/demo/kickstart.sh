@@ -62,13 +62,15 @@ _usage() {
 
     COMMANDS:
 
-        $0 upgrade          Search/Install newer version of kickstart
+        $0 dev          Run development mode
 
-        $0 run
+        $0 test         Run tests
 
     ARGUMENTS
         -t <tagName> --tag=<tagname>   Run container with this tag (development)
         -u --unflavored                Run the container whithout running any scripts (develpment)
+        --upgrade                      Search / Install new kickstart version
+
     "
     exit 1
 }
@@ -101,7 +103,7 @@ _print_header() {
     then
         echo "|                                                           "
         echo "| UPDATE AVAILABLE: Head Version: $KICKSTART_NEWEST_VERSION"
-        echo "| To Upgrade Version: Run ./kickstart.sh upgrade                                  "
+        echo "| To Upgrade Version: Run ./kickstart.sh --upgrade                              "
         echo "|                                                                                 "
     fi;
 
@@ -158,7 +160,7 @@ run_container() {
         -e "DEV_UID=$UID"                               \
         -p 80:4200                                      \
         --name $CONTAINER_NAME                          \
-        "$USE_PIPF_VERSION" $ARGUMENT
+        $USE_PIPF_VERSION $ARGUMENT
 
     status=$?
     if [[ $status -ne 0 ]]
@@ -223,6 +225,10 @@ while [ "$#" -gt 0 ]; do
     --on-after-upgrade)
         exit 0;;
 
+    -h)
+        _usage;
+        exit 0;;
+
     --help)
         _usage
         exit 0;;
@@ -237,7 +243,6 @@ while [ "$#" -gt 0 ]; do
 done
 
 ARGUMENT=$1;
-
 _print_header
 if [ `docker ps | grep "$CONTAINER_NAME" | wc -l` -gt 0 ]
 then
