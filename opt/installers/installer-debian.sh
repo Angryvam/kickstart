@@ -6,7 +6,8 @@
 # See: https://github.com/c7lab/kickstart/opt/installers
 #
 
-apt-get install -y php-cli curl zip composer
+apt-get update
+apt-get install -y php-cli curl zip composer vim nano git curl
 
 echo "Cloning kickstart scripts..."
 mkdir /kickstart
