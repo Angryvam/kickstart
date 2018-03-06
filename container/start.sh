@@ -30,8 +30,14 @@ echo "[entry.sh] | Parameters.: $@"
 echo "[entry.sh] | Dev UID....: $DEV_UID"
 echo "[entry.sh] | ProjectName: $DEV_CONTAINER_NAME"
 echo "[entry.sh] +----------------------------------------------------+"
-echo "[entry.sh] Running .docker/.entry-bootstrap.sh..."
+
+echo "[entry.sh] Running /kickstart/container/flavor-start.sh"
 echo -e $COLOR_NC
+
+. /kickstart/container/flavor-start.sh
+
+
+
 
 if [ "$1" == "unit-test" ]
 then
