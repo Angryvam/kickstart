@@ -1,6 +1,14 @@
 #!/bin/bash
 
 set -e
+set -o pipefail
+trap 'on_error $LINENO' ERR;
+PROGNAME=$(basename $0)
+
+function on_error () {
+    echo "Error: ${PROGNAME} on line $1" 1>&2
+    exit 1
+}
 
 
 COLOR_NC='\e[0m' # No Color
@@ -48,6 +56,12 @@ echo "user   ALL = (ALL) NOPASSWD:   ALL" >> /etc/sudoers
 echo "[entry.sh] + kick init"
 sudo -E -s -u user kick init
 
+RUN_SHELL=1
+if [ "$1" == "run" ]
+then
+    RUN_SHELL=0
+    shift 1;
+fi;
 
 if [ "$1" != '' ]
 then
@@ -66,7 +80,12 @@ echo ""
 echo -e $COLOR_GREEN"Container ready..."
 echo -e $COLOR_NC
 
-sudo -E -s -u user /bin/bash
+
+
+if [ $RUN_SHELL == 1 ]
+then
+    sudo -E -s -u user /bin/bash
+fi;
 echo "[entry.sh] exit; You are now leaving the container. Goodbye."
 exit
 
