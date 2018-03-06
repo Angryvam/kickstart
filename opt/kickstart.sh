@@ -215,7 +215,6 @@ while [ "$#" -gt 0 ]; do
     -t) USE_PIPF_VERSION="-t $2"; shift 2;;
     --tag=*) USE_PIPF_VERSION="-t ${1#*=}"; shift 1;;
 
-
     --upgrade)
         echo "Checking for updates from $KICKSTART_UPGRADE_URL..."
         curl "$KICKSTART_RELEASE_NOTES_URL"
@@ -240,8 +239,8 @@ while [ "$#" -gt 0 ]; do
     --tag) echo "$1 requires an argument" >&2; exit 1;;
 
     -*) echo "unknown option: $1" >&2; exit 1;;
-    *)
-    break;
+
+    *)  break;
 
   esac
 done
