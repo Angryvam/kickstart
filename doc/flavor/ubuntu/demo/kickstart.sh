@@ -52,7 +52,7 @@ KICKSTART_UPGRADE_URL="https://raw.githubusercontent.com/c7lab/kickstart/master/
 KICKSTART_RELEASE_NOTES_URL="https://raw.githubusercontent.com/c7lab/kickstart/master/opt/kickstart-release-notes.txt"
 KICKSTART_VERSION_URL="https://raw.githubusercontent.com/c7lab/kickstart/master/opt/kickstart-release.txt"
 
-KICKSTART_CURRENT_VERSION="1.0.7"
+KICKSTART_CURRENT_VERSION="1.1.0"
 
 
 
@@ -62,9 +62,17 @@ _usage() {
 
     COMMANDS:
 
-        $0 dev          Run development mode
+        $0 [dev|<command>]
+            Run kick <command> and start bash inside container (development mode)
 
-        $0 test         Run tests
+        $0 run <command>
+            Execute kick <command> and return (unit-testing)
+
+
+    EXAMPLES
+
+        $0              Just start a shell inside the container (default development usage)
+        $0 run test     Execute commands defined in section 'test' of .kick.yml
 
     ARGUMENTS
         -t <tagName> --tag=<tagname>   Run container with this tag (development)
