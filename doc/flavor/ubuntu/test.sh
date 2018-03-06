@@ -15,7 +15,5 @@ TAG="kickstart-test-ubuntu"
 
 
 docker build -t $TAG --no-cache $PWD
-
-docker kill -t $TAG
-docker rm -t $TAG
+demo/kickstart.sh -t $TAG
 

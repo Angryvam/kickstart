@@ -38,62 +38,38 @@ echo -e $COLOR_NC
 
 
 
+echo -e $COLOR_LIGHT_CYAN"[entry.sh][DEVELOPMENT MODE] Changing userid of 'user' to $DEV_UID"
 
-if [ "$1" == "unit-test" ]
+usermod -u $DEV_UID user
+chown -R user /home/user
+export HOME=/home/user
+echo "user   ALL = (ALL) NOPASSWD:   ALL" >> /etc/sudoers
+
+echo "[entry.sh] + kick init"
+sudo -E -s -u user kick init
+
+
+if [[ $@!='' ]]
 then
-    echo ""
-    echo "[entry.sh][UNIT-TEST] Running unit-tests from .docker/.unit-test.sh"
-    . /root/.unit-test.sh
-    echo "[DONE]"
-    exit
-fi
-
-if [ "$1" == "dev" ]
-then
-    echo -e $COLOR_LIGHT_CYAN"[entry.sh][DEVELOPMENT MODE] Changing userid of 'user' to $DEV_UID"
-
-    usermod -u $DEV_UID user
-    chown -R user /home/user
-    export HOME=/home/user
-    echo "user   ALL = (ALL) NOPASSWD:   ALL" >> /etc/sudoers
-
-    echo "[entry.sh] + kick init"
-    sudo -E -s -u user kick init
-    echo "[entry.sh] + kick dev"
-    sudo -E -s -u user kick dev
-
-    echo "[entry.sh][DEVELOPMENT MODE] Running /bin/bash as user (uid: $DEV_UID) [skip /root/.entry-loop.sh]"
-    echo -e $COLOR_YELLOW
-    if [ -f /opt/README.msg ]
-    then
-        echo "-------------------------- Message from README.msg -----------------------------"
-        cat /opt/README.msg
-    else
-        echo "[entry.sh] README.msg missing in project. [skip]"
-    fi;
-
-    echo ""
-    echo -e $COLOR_GREEN"Container ready..."
-    echo -e $COLOR_NC
-
-    sudo -E -s -u user /bin/bash
-    echo "[entry.sh] exit; You are now leaving the container. Goodbye."
-    exit
-fi
-
-
-if [ "$1" == "worker" ]
-then
-    echo ""
-    echo "[entry.sh][WORKER MODE]"
-    echo ""
-fi
+    echo "[entry.sh] + kick $@"
+    sudo -E -s -u user kick $@
+fi;
 
 echo -e $COLOR_YELLOW
-echo "[entry.sh] Running .docker/.entry-loop.sh..."
+if [ -f /opt/README.msg ]
+then
+    echo "-------------------------- Message from README.msg -----------------------------"
+    cat /opt/README.msg
+fi;
+
+echo ""
+echo -e $COLOR_GREEN"Container ready..."
 echo -e $COLOR_NC
 
-. /root/.entry-loop.sh
+sudo -E -s -u user /bin/bash
+echo "[entry.sh] exit; You are now leaving the container. Goodbye."
+exit
+
 
 
 

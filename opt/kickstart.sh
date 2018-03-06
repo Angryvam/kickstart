@@ -158,7 +158,7 @@ run_container() {
         -e "DEV_UID=$UID"                               \
         -p 80:4200                                      \
         --name $CONTAINER_NAME                          \
-        "$USE_PIPF_VERSION" dev
+        "$USE_PIPF_VERSION" $ARGUMENT
 
     status=$?
     if [[ $status -ne 0 ]]
@@ -206,26 +206,7 @@ while [ "$#" -gt 0 ]; do
     --tag=*) USE_PIPF_VERSION="-t ${1#*=}"; shift 1;;
 
 
-    --tag) echo "$1 requires an argument" >&2; exit 1;;
-
-    -*) echo "unknown option: $1" >&2; exit 1;;
-    *) ARGUMENT=$1; shift 1;;
-  esac
-done
-
-
-
-case  "$1" in
-    "")
-        _print_header
-        if [ `docker ps | grep "$CONTAINER_NAME" | wc -l` -gt 0 ]
-        then
-            run_shell
-        fi;
-        run_container
-        ;;
-
-    "upgrade")
+    --upgrade)
         echo "Checking for updates from $KICKSTART_UPGRADE_URL..."
         curl "$KICKSTART_RELEASE_NOTES_URL"
 
@@ -234,23 +215,34 @@ case  "$1" in
         echo "Writing to $0..."
         curl "$KICKSTART_UPGRADE_URL" -o "$0"
         echo "Done"
-        echo "Calling on update trigger: $0 on-after-update"
+        echo "Calling on update trigger: $0 --on-after-update"
         $0 on-after-upgrade
         echo -e "$COLOR_GREEN[kickstart.sh] Upgrade successful.$COLOR_NC"
         exit 0;;
 
-    "on-after-upgrade")
-        echo "Nothing to do."
-        # This will be called after a upgrade
+    --on-after-upgrade)
         exit 0;;
 
-    "help")
+    --help)
         _usage
-        ;;
+        exit 0;;
 
+    --tag) echo "$1 requires an argument" >&2; exit 1;;
+
+    -*) echo "unknown option: $1" >&2; exit 1;;
     *)
-        echo -e "$COLOR_RED""[kickstart.sh] Invalid parameter '$1'."
-        _usage
-        exit 3;;
+        ARGUMENT=$1;
+        if [[ $ARGUMENT="" ]]
+        then
+            ARGUMENT="dev";
+        fi;
+        _print_header
+        if [ `docker ps | grep "$CONTAINER_NAME" | wc -l` -gt 0 ]
+        then
+            run_shell
+        fi;
+        run_container
+        shift 1;;
+  esac
+done
 
-esac;

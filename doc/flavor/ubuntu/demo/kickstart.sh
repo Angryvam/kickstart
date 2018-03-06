@@ -11,15 +11,11 @@
 # See https://github.com/continue/kickstart for more information
 
 
-## Set the correct revision
-
-
-
 
 # Error Handling.
 trap 'on_error $LINENO' ERR;
 PROGNAME=$(basename $0)
-PROGPATH="$( cd "$(dirname "$0")" ; pwd -P )"
+PROGPATH="$( cd "$(dirname "$0")" ; pwd -P )"   # The absolute path to kickstart.sh
 
 function on_error () {
     echo "Error: ${PROGNAME} on line $1" 1>&2
@@ -62,7 +58,7 @@ KICKSTART_CURRENT_VERSION="1.0.7"
 
 
 _usage() {
-    echo -e $COLOR_NC "Usage: $PROGNAME [<command>]
+    echo -e $COLOR_NC "Usage: $0 [<command>]
 
     COMMANDS:
 
@@ -70,6 +66,9 @@ _usage() {
 
         $0 run
 
+    ARGUMENTS
+        -t <tagName> --tag=<tagname>   Run container with this tag (development)
+        -u --unflavored                Run the container whithout running any scripts (develpment)
     "
     exit 1
 }
@@ -145,7 +144,7 @@ ask_user() {
     exit 1;
 }
 
-echo $PROGPATH
+
 run_container() {
     echo -e $COLOR_GREEN"Loading container '$USE_PIPF_VERSION'..."
     docker pull "$USE_PIPF_VERSION"
@@ -153,13 +152,13 @@ run_container() {
     docker rm $CONTAINER_NAME
     echo -e $COLOR_WHITE "==> [$0] STARTING CONTAINER (docker run): Running container in dev-mode..." $COLOR_NC
     docker run -it                                      \
-        -v "$PROGPATH:/opt/"                                \
+        -v "$PROGPATH/:/opt/"                                \
         -e "DEV_CONTAINER_NAME=$CONTAINER_NAME"         \
         -e "DEV_TTYID=[MAIN]"                           \
         -e "DEV_UID=$UID"                               \
         -p 80:4200                                      \
         --name $CONTAINER_NAME                          \
-        $USE_PIPF_VERSION dev
+        "$USE_PIPF_VERSION" $ARGUMENT
 
     status=$?
     if [[ $status -ne 0 ]]
@@ -198,6 +197,7 @@ then
     exit 2
 fi;
 
+
 # Parse the command parameters
 ARGUMENT="";
 while [ "$#" -gt 0 ]; do
@@ -205,28 +205,8 @@ while [ "$#" -gt 0 ]; do
     -t) USE_PIPF_VERSION="-t $2"; shift 2;;
     --tag=*) USE_PIPF_VERSION="-t ${1#*=}"; shift 1;;
 
-    --pidfile=*) pidfile="${1#*=}"; shift 1;;
-    --logfile=*) logfile="${1#*=}"; shift 1;;
 
-    --tag) echo "$1 requires an argument" >&2; exit 1;;
-
-    -*) echo "unknown option: $1" >&2; exit 1;;
-    *) ARGUMENT=$1; shift 1;;
-  esac
-done
-
-
-case  "$ARGUMENT" in
-    "")
-        _print_header
-        if [ `docker ps | grep "$CONTAINER_NAME" | wc -l` -gt 0 ]
-        then
-            run_shell
-        fi;
-        run_container
-        ;;
-
-    "upgrade")
+    --upgrade)
         echo "Checking for updates from $KICKSTART_UPGRADE_URL..."
         curl "$KICKSTART_RELEASE_NOTES_URL"
 
@@ -235,23 +215,32 @@ case  "$ARGUMENT" in
         echo "Writing to $0..."
         curl "$KICKSTART_UPGRADE_URL" -o "$0"
         echo "Done"
-        echo "Calling on update trigger: $0 on-after-update"
+        echo "Calling on update trigger: $0 --on-after-update"
         $0 on-after-upgrade
         echo -e "$COLOR_GREEN[kickstart.sh] Upgrade successful.$COLOR_NC"
         exit 0;;
 
-    "on-after-upgrade")
-        echo "Nothing to do."
-        # This will be called after a upgrade
+    --on-after-upgrade)
         exit 0;;
 
-    "help")
+    --help)
         _usage
-        ;;
+        exit 0;;
 
+    --tag) echo "$1 requires an argument" >&2; exit 1;;
+
+    -*) echo "unknown option: $1" >&2; exit 1;;
     *)
-        echo -e "$COLOR_RED""[kickstart.sh] Invalid parameter '$1'."
-        _usage
-        exit 3;;
+    break;
 
-esac;
+  esac
+done
+
+ARGUMENT=$1;
+
+_print_header
+if [ `docker ps | grep "$CONTAINER_NAME" | wc -l` -gt 0 ]
+then
+    run_shell
+fi;
+run_container
