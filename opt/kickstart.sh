@@ -250,7 +250,7 @@ while [ "$#" -gt 0 ]; do
   esac
 done
 
-ARGUMENT=$1;
+ARGUMENT=$@;
 _print_header
 if [ `docker ps | grep "$CONTAINER_NAME" | wc -l` -gt 0 ]
 then
