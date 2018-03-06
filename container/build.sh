@@ -30,21 +30,21 @@ chown user:root /opt
 
 
 
-if [[ ! -e /kickstart/container/flavor-build.sh ]]
+if [[ ! -e /root/flavor/flavor-build.sh ]]
 then
-    echo "Error: Missing flavor-build.sh in /kickstart/container/"
+    echo "Error: Missing flavor-build.sh in /root/flavor/"
     exit 1
 fi;
 
 ## This file is used by start.sh - but check if it exists on build time here
-if [[ ! -e /kickstart/container/flavor-start.sh ]]
+if [[ ! -e /root/flavor/flavor-build.sh ]]
 then
-    echo "Error: Missing flavor-start.sh in /kickstart/container/"
+    echo "Error: Missing flavor-start.sh in /root/flavor/"
     exit 1
 fi;
 
 echo "Running: /kickstart/container/flavor-build.sh"
-. /kickstart/container/flavor-build.sh
+. /root/flavor/flavor-build.sh
 
 
 

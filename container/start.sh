@@ -34,7 +34,7 @@ echo "[entry.sh] +----------------------------------------------------+"
 echo "[entry.sh] Running /kickstart/container/flavor-start.sh"
 echo -e $COLOR_NC
 
-. /kickstart/container/flavor-start.sh
+. /root/flavor/flavor-start.sh
 
 
 
