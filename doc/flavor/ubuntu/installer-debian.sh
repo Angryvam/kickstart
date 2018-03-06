@@ -16,9 +16,6 @@ function on_error () {
     exit 1
 }
 
-ls -l /kickstart
-exit 1;
-
 apt-get update
 apt-get install -y php-cli curl zip composer vim nano git curl sudo
 
