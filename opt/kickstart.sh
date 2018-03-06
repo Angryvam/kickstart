@@ -62,9 +62,17 @@ _usage() {
 
     COMMANDS:
 
-        $0 dev          Run development mode
+        $0 [dev|<command>]
+            Run kick <command> and start bash inside container (development mode)
 
-        $0 test         Run tests
+        $0 run <command>
+            Execute kick <command> and return (unit-testing)
+
+
+    EXAMPLES
+
+        $0              Just start a shell inside the container (default development usage)
+        $0 run test     Execute commands defined in section 'test' of .kick.yml
 
     ARGUMENTS
         -t <tagName> --tag=<tagname>   Run container with this tag (development)
