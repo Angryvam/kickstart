@@ -13,7 +13,21 @@ function on_error () {
 
 TAG="kickstart-test-ubuntu"
 
+## Dockerfile won't allow parent directory access - so we just copy the project
+if [[ -e .kickstart-temp ]]
+then
+    rm -Rf .kickstart-temp
+fi
+mkdir .kickstart-temp
+rsync -aP ../../../ .kickstart-temp/
 
+# Build the container
 docker build -t $TAG --no-cache $PWD
-demo/kickstart.sh -t $TAG
+
+# Remove temp directory
+rm -Rf .kickstart-temp
+
+
+# Run the container
+demo/kickstart.sh -t $TAG run dev
 

@@ -2,8 +2,8 @@ FROM ubuntu:16.04
 LABEL maintainer="Matthias Leuffen <leuffen@continue.de>"
 
 # For development-purpose only: Don't use github.com to load kickstart base package
-# Comment out to test production mode.
-#ADD /kickstart/ /kickstart/
+# Comment out to test production mode. (see test.sh : rsync section to copy base files into this directory)
+ADD /.kickstart-temp/ /kickstart/
 
 
 ADD / /root/flavor/
