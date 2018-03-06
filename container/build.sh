@@ -3,6 +3,14 @@
 
 ## set -e: Stop on error
 set -e
+set -o pipefail
+trap 'on_error $LINENO' ERR;
+PROGNAME=$(basename $0)
+
+function on_error () {
+    echo "Error: ${PROGNAME} on line $1" 1>&2
+    exit 1
+}
 
 ####################################################################
 ## Execute after .dockerfile-build.sh
