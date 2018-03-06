@@ -82,7 +82,7 @@ echo -e $COLOR_NC
 
 
 
-if [ $RUN_SHELL == 1 ]
+if [ "$RUN_SHELL" == "1" ]
 then
     sudo -E -s -u user /bin/bash
 fi;
