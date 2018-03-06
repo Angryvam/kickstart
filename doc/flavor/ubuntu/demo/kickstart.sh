@@ -11,11 +11,15 @@
 # See https://github.com/continue/kickstart for more information
 
 
+## Set the correct revision
+
+
+
 
 # Error Handling.
 trap 'on_error $LINENO' ERR;
 PROGNAME=$(basename $0)
-PROGPATH="$( cd "$(dirname "$0")" ; pwd -P )"   # The absolute path to kickstart.sh
+PROGPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 
 function on_error () {
     echo "Error: ${PROGNAME} on line $1" 1>&2
@@ -58,7 +62,7 @@ KICKSTART_CURRENT_VERSION="1.0.7"
 
 
 _usage() {
-    echo -e $COLOR_NC "Usage: $0 [<command>]
+    echo -e $COLOR_NC "Usage: $PROGNAME [<command>]
 
     COMMANDS:
 
@@ -66,9 +70,6 @@ _usage() {
 
         $0 run
 
-    ARGUMENTS
-        -t <tagName> --tag=<tagname>   Run container with this tag (development)
-        -u --unflavored                Run the container whithout running any scripts (develpment)
     "
     exit 1
 }
@@ -144,7 +145,7 @@ ask_user() {
     exit 1;
 }
 
-
+echo $PROGPATH
 run_container() {
     echo -e $COLOR_GREEN"Loading container '$USE_PIPF_VERSION'..."
     docker pull "$USE_PIPF_VERSION"
@@ -152,13 +153,13 @@ run_container() {
     docker rm $CONTAINER_NAME
     echo -e $COLOR_WHITE "==> [$0] STARTING CONTAINER (docker run): Running container in dev-mode..." $COLOR_NC
     docker run -it                                      \
-        -v "$PROGPATH/:/opt/"                                \
+        -v "$PROGPATH:/opt/"                                \
         -e "DEV_CONTAINER_NAME=$CONTAINER_NAME"         \
         -e "DEV_TTYID=[MAIN]"                           \
         -e "DEV_UID=$UID"                               \
         -p 80:4200                                      \
         --name $CONTAINER_NAME                          \
-        "$USE_PIPF_VERSION" dev
+        $USE_PIPF_VERSION dev
 
     status=$?
     if [[ $status -ne 0 ]]
@@ -197,7 +198,6 @@ then
     exit 2
 fi;
 
-
 # Parse the command parameters
 ARGUMENT="";
 while [ "$#" -gt 0 ]; do
@@ -205,6 +205,8 @@ while [ "$#" -gt 0 ]; do
     -t) USE_PIPF_VERSION="-t $2"; shift 2;;
     --tag=*) USE_PIPF_VERSION="-t ${1#*=}"; shift 1;;
 
+    --pidfile=*) pidfile="${1#*=}"; shift 1;;
+    --logfile=*) logfile="${1#*=}"; shift 1;;
 
     --tag) echo "$1 requires an argument" >&2; exit 1;;
 
@@ -214,8 +216,7 @@ while [ "$#" -gt 0 ]; do
 done
 
 
-
-case  "$1" in
+case  "$ARGUMENT" in
     "")
         _print_header
         if [ `docker ps | grep "$CONTAINER_NAME" | wc -l` -gt 0 ]
