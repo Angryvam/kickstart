@@ -226,18 +226,14 @@ while [ "$#" -gt 0 ]; do
         curl "$KICKSTART_UPGRADE_URL" -o "$0"
         echo "Done"
         echo "Calling on update trigger: $0 --on-after-update"
-        $0 on-after-upgrade
+        $0 --on-after-upgrade
         echo -e "$COLOR_GREEN[kickstart.sh] Upgrade successful.$COLOR_NC"
         exit 0;;
 
     --on-after-upgrade)
         exit 0;;
 
-    -h)
-        _usage;
-        exit 0;;
-
-    --help)
+    -h|--help)
         _usage
         exit 0;;
 
