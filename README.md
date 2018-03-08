@@ -75,37 +75,17 @@ Plus:
 - Exec by default: `kick init`
 
 
+## Install Docker
 
-## Development mode
+Install docker by running 
 
-Der Container kann genutzt werden, um apps lokal zu entwickeln. Dafür
-einfach von Hand oder per Script starten:
+``
+sudo apt-get install docker.io
+sudo gpasswd -a $USER docker
+``
 
-```
+and reboot your system. That's it (`docker ps` should return no error) 
 
-```
-
-
-
-## Config-Management
-
-Unter `/etc/config.php` liegt die Config-Datei mit Environment:
-
-```
-define("DEBUG", true|false);
-```
-
-
-
-## Apache Location auf Service umleiten
-
-
-```
-<Location "/some-path/">
-    ProxyPass "http://some-host/"
-    ProxyPreserveHost Off
-</Location>
-```
 
 ## Naming of flavors
 
