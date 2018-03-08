@@ -22,7 +22,8 @@ composer install -d /kickstart/src
 
 
 useradd -s /bin/bash --create-home user
-
+# Add user to admin group
+gpasswd -a user adm
 
 # Set Color Prompt
 PROMPT='export PROMPT_COMMAND='\''if [ `whoami` != "root" ] ;  then echo -ne "\e[0m\e[95m${DEV_TTYID}\e[0m`whoami`@\e[1;33m${DEV_CONTAINER_NAME}:\e[0m${PWD}$ "; else echo -ne "\e[101m\e[95m${DEV_TTYID}`whoami`@\e[1;33m${DEV_CONTAINER_NAME}:\e[0m${PWD}$ "; fi;'\'' '

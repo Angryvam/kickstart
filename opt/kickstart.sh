@@ -168,7 +168,6 @@ run_container() {
         -e "DEV_UID=$UID"                               \
         -e "DEV_MODE=1"                                 \
         -p 80:4200                                      \
-        -p 9000:9000                                    \
         --name $CONTAINER_NAME                          \
         $USE_PIPF_VERSION $ARGUMENT
 
