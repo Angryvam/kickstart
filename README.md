@@ -91,4 +91,12 @@ and reboot your system. That's it (`docker ps` should return no error)
 
 Feel free to build your own flavors.
 
+Some rules:
+
+- Each flavor should reside in an separate repository
+- It must build the tags `latest` (stable release) and `testing` (current master branch build)
+- It must provide tests
+- And should provide easy to use documentation
+- It should build using hub.docker.com public build service (free of charge!)
+
 Flavor names derive from greek mystical names [click](https://de.wikipedia.org/wiki/Griechische_Mythologie)
