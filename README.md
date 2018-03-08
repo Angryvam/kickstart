@@ -3,7 +3,7 @@
 | Flavor  | Pull-Name                          | Software                                    | Support                      |    |
 |---------|------------------------------------|---------------------------------------------|------------------------------|----|
 |         | `continue/kickstart`               | <base container>                            |                              | [![Docker Pulls](https://img.shields.io/docker/pulls/continue/kickstart.svg)](https://hub.docker.com/r/continue/kickstart/) [![Docker layers](https://images.microbadger.com/badges/image/continue/kickstart.svg)](https://microbadger.com/images/continue/kickstart) |
-| gaia    | `continue/kickstart-flavor:gaia`   | apache2, php7.0, imagemagick, xsl           | [details](.flavors/gaia/)    | [![Docker Pulls](https://img.shields.io/docker/pulls/continue/kickstart-flavor:gaia.svg)](https://hub.docker.com/r/continue/kickstart/) [![Docker layers](https://images.microbadger.com/badges/image/continue/kickstart-flavor:gaia.svg)](https://microbadger.com/images/continue/kickstart-flavor:gaia) |
+| gaia    | `continue/kickstart-flavor-gaia`   | apache2, php7.0, imagemagick, xsl           | [details](https://github.com/c7lab/kickstart-flavor-gaia/blob/master/README.md)    | [![Docker Pulls](https://img.shields.io/docker/pulls/continue/kickstart-flavor-gaia.svg)](https://hub.docker.com/r/continue/kickstart-flavor-gaia/) [![Docker layers](https://images.microbadger.com/badges/image/continue/kickstart-flavor-gaia.svg)](https://microbadger.com/images/continue/kickstart-flavor-gaia) |
 | erebos  | `continue/kickstart-flavor:erebos` | nodejs, angular-cli (5)                     | [details](.flavors/erebos/)  | [![Docker Pulls](https://img.shields.io/docker/pulls/continue/kickstart-flavor:erebos.svg)](https://hub.docker.com/r/continue/kickstart/) [![Docker layers](https://images.microbadger.com/badges/image/continue/kickstart-flavor:erebos.svg)](https://microbadger.com/images/continue/kickstart-flavor:erebos) |
 
 
@@ -87,6 +87,8 @@ sudo gpasswd -a $USER docker
 and reboot your system. That's it (`docker ps` should return no error) 
 
 
-## Naming of flavors
+## Building own flavors
+
+Feel free to build your own flavors.
 
 Flavor names derive from greek mystical names [click](https://de.wikipedia.org/wiki/Griechische_Mythologie)
