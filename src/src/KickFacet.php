@@ -71,8 +71,7 @@ class KickFacet
                     if (is_array($value))
                         continue;
                     $env = "export KICK_" . strtoupper($key) . "=$value";
-                    system ($env);
-                    Out::log("Setting env(" . $env . ")");
+                    echo "$env\n";
                 }
                 return true;
 
