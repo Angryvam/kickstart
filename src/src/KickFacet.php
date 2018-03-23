@@ -34,11 +34,7 @@ class KickFacet
             throw $e;
         }
 
-        foreach ($this->config as $key=>$value) {
-            if (is_array($value))
-                continue;
-            putenv("KICK_" . strtoupper($key) . "=$value");
-        }
+
 
         if (file_exists(self::CONF_STATE_FILE)) {
             $this->execBox = unserialize(
@@ -65,6 +61,17 @@ class KickFacet
                 $this->execBox->killAll();
                 Out::log("Killed all background services");
                 return true;
+
+            case "kick_to_env":
+                foreach ($this->config as $key=>$value) {
+                    if (is_array($value))
+                        continue;
+                    $env = "KICK_" . strtoupper($key) . "=$value";
+                    putenv($env);
+                    Out::log("Setting ENV(" . $env . ")");
+                }
+                return true;
+
 
             default:
                 // search for command in command: - section
