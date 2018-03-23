@@ -70,9 +70,9 @@ class KickFacet
                 foreach ($this->config as $key=>$value) {
                     if (is_array($value))
                         continue;
-                    $env = "KICK_" . strtoupper($key) . "=$value";
-                    putenv($env);
-                    Out::log("Setting ENV(" . $env . ")");
+                    $env = "export KICK_" . strtoupper($key) . "=$value";
+                    system ($env);
+                    Out::log("Setting env(" . $env . ")");
                 }
                 return true;
 
