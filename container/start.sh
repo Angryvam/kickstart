@@ -47,8 +47,6 @@ envtoset=`kick kick_to_env`
 echo $envtoset
 export $envtoset;
 
-. /root/flavor/flavor-start.sh
-
 if [ "$KICK_PRESET" != "" ]
 then
     echo "[entry.sh] Loading preset $KICK_PRESET";
@@ -60,6 +58,10 @@ then
     fi
     . $presetFile
 fi
+
+
+. /root/flavor/flavor-start.sh
+
 
 echo -e $COLOR_LIGHT_CYAN"[entry.sh][DEVELOPMENT MODE] Changing userid of 'user' to $DEV_UID"
 
