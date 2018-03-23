@@ -89,6 +89,12 @@ and reboot your system. That's it (`docker ps` should return no error)
 (Make sure to also register the ip `10.10.10.10/32` on your local network
 interface so the container can communicate with the host.)
 
+## ToDo
+
+- Fulfill security best practices based on `docker/docker-bench-security`
+
+
+
 ## Building own flavors
 
 Feel free to build your own flavors.

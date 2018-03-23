@@ -34,6 +34,12 @@ class KickFacet
             throw $e;
         }
 
+        foreach ($this->config as $key=>$value) {
+            if (is_array($value))
+                continue;
+            putenv("KICK_" . strtoupper($key) . "=$value");
+        }
+
         if (file_exists(self::CONF_STATE_FILE)) {
             $this->execBox = unserialize(
                 file_get_contents(self::CONF_STATE_FILE)
