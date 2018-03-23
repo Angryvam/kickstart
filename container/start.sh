@@ -42,9 +42,22 @@ echo "[entry.sh] +----------------------------------------------------+"
 echo "[entry.sh] Running /kickstart/container/flavor-start.sh"
 echo -e $COLOR_NC
 
+echo "[entry.sh] + kick kick_to_env"
+kick kick_to_env
+
 . /root/flavor/flavor-start.sh
 
-
+if [ "$KICK_PRESET" != "" ]
+then
+    echo "[entry.sh] Loading preset $KICK_PRESET";
+    presetFile = "/root/flavor/presets/$KICK_PRESET.sh"
+    if [ ! -e $presetFile ]
+    then
+        echo "Error: Preset $KICK_PRESET (selected in .kick.yml - preset): File not found: $presetFile";
+        exit 1;
+    fi
+    . $presetFile
+fi
 
 echo -e $COLOR_LIGHT_CYAN"[entry.sh][DEVELOPMENT MODE] Changing userid of 'user' to $DEV_UID"
 
@@ -52,6 +65,10 @@ usermod -u $DEV_UID user
 chown -R user /home/user
 export HOME=/home/user
 echo "user   ALL = (ALL) NOPASSWD:   ALL" >> /etc/sudoers
+
+
+
+
 
 echo "[entry.sh] + kick init"
 sudo -E -s -u user kick init
