@@ -52,7 +52,7 @@ export $envtoset;
 if [ "$KICK_PRESET" != "" ]
 then
     echo "[entry.sh] Loading preset $KICK_PRESET";
-    presetFile = "/root/flavor/presets/$KICK_PRESET.sh"
+    presetFile="/root/flavor/presets/$KICK_PRESET.sh"
     if [ ! -e $presetFile ]
     then
         echo "Error: Preset $KICK_PRESET (selected in .kick.yml - preset): File not found: $presetFile";
