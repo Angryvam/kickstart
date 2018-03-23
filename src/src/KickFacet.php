@@ -46,9 +46,12 @@ class KickFacet
 
     }
 
+    private $skipWriteStateFile = false;
 
     public function __destruct()
     {
+        if ($this->skipWriteStateFile == true)
+            return true;
         file_put_contents(self::CONF_STATE_FILE, serialize($this->execBox));
     }
 
@@ -63,6 +66,7 @@ class KickFacet
                 return true;
 
             case "kick_to_env":
+                $this->skipWriteStateFile = true;
                 foreach ($this->config as $key=>$value) {
                     if (is_array($value))
                         continue;
