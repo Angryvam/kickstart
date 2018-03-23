@@ -66,6 +66,7 @@ class KickFacet
                 return true;
 
             case "kick_to_env":
+                // Output env variables to be added via env
                 $this->skipWriteStateFile = true;
                 foreach ($this->config as $key=>$value) {
                     if (is_array($value))

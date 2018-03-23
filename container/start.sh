@@ -43,9 +43,9 @@ echo "[entry.sh] Running /kickstart/container/flavor-start.sh"
 echo -e $COLOR_NC
 
 echo "[entry.sh] + kick kick_to_env"
-envtoset=$(kick kick_to_env)
+envtoset=`kick kick_to_env`
 echo $envtoset
-env $envtoset;
+export $envtoset;
 
 . /root/flavor/flavor-start.sh
 
