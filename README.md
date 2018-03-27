@@ -7,10 +7,11 @@
 | erebos  | `continue/kickstart-flavor-erebos` | nodejs, angular-cli (5)                     | [details](https://github.com/c7lab/kickstart-flavor-erebos/blob/master/README.md)  | [![Docker Pulls](https://img.shields.io/docker/pulls/continue/kickstart-flavor-erebos.svg)](https://hub.docker.com/r/continue/kickstart-flavor-erebos/) [![Docker layers](https://images.microbadger.com/badges/image/continue/kickstart-flavor-erebos.svg)](https://microbadger.com/images/continue/kickstart-flavor-erebos) |
 
 
-***(do you have ready to use containers - append it to this list)***
-
+___(do you have ready to use containers - append it to this list)___
 
 ## Quickstart with Kickstart
+
+First of all, make sure [docker is correctly installed on your desktop](doc/installing-docker.md).
 
 Download [kickstart.sh](https://raw.githubusercontent.com/c7lab/kickstart/master/opt/kickstart.sh) and save
 it to your projects main directory:
@@ -42,30 +43,9 @@ To select a special flavor select
 
 ```
 version: 1
-from: continue/kickstart-flavor:gaia
+from: continue/kickstart-flavor-gaia
 ```
 
-
-## Provides an rapid development environment for php microservices
-
-- Fixed Host/Path-URL: https://<branch>.<service-name>.<namespace>.sf.com
-- Configuration switch for Development
-- Mail-Connection (Postfix)
-- MongoDb Server (stateful)
-
-Plus:
-
-- Checkout from git-Repository
-- healthcheck
-
-Plus:
-
-- Preconfigured apache2.4 environment for both safety and performance
-
-Plus:
-
-- Private/Public-Key exchange for authentication against other
-  services.
 
 
 ## Development and Deploy Tool: `kick`
@@ -75,23 +55,12 @@ Plus:
 - Exec by default: `kick init`
 
 
-## Install Docker
+## Defaults
 
-Install docker by running 
+### Networking
 
-``
-sudo apt-get install docker.io
-sudo gpasswd -a $USER docker
-``
-
-and reboot your system. That's it (`docker ps` should return no error) 
-
-(Make sure to also register the ip `10.10.10.10/32` on your local network
-interface so the container can communicate with the host.)
-
-## ToDo
-
-- Fulfill security best practices based on `docker/docker-bench-security`
+By default, kickstart will configure debuggers to send data to `10.10.10.10`. So 
+this ip should be added to your pc's networks.
 
 
 
