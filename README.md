@@ -16,13 +16,13 @@ First of all, make sure [docker is correctly installed on your desktop](doc/inst
 Download [kickstart.sh](https://raw.githubusercontent.com/c7lab/kickstart/master/opt/kickstart.sh) and save
 it to your projects main directory:
 
-```
+```bash
 curl -o kickstart.sh "https://raw.githubusercontent.com/c7lab/kickstart/master/opt/kickstart.sh" && chmod +x kickstart.sh
 ```
 
 Run kickstart:
 
-```
+```bash
 ./kickstart.sh
 ```
 
@@ -32,7 +32,7 @@ at least the `from:`-Line.
 
 ## .kick.yml - Kickstart configuration file.
 
-```
+```yaml
 version: 1
 from: "continue/kickstart"
 ```
@@ -41,7 +41,7 @@ Run `./kickstart.sh` - the container should start.
 
 To select a special flavor select
 
-```
+```yaml
 version: 1
 from: continue/kickstart-flavor-gaia
 ```

@@ -10,7 +10,7 @@ Instructions available for:
 ## Ubuntu/Kubuntu 16.04, 17.10, 18.04
 
 As user run:
-```
+```bash
 sudo apt-get install docker.io curl
 sudo gpasswd -a $USER docker
 ```
@@ -23,7 +23,7 @@ unprivileged user.
 
 Edit `/etc/network/interfaces` and add 
 
-```
+```yaml
 auto eno0:10
 iface eno0:10 inet static
     address 10.10.10.10
