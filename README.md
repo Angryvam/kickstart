@@ -9,6 +9,7 @@
 
 ___(do you have ready to use containers - append it to this list)___
 
+
 ## Quickstart with Kickstart
 
 First of all, make sure [docker is correctly installed on your desktop](doc/installing-docker.md).
@@ -46,8 +47,6 @@ version: 1
 from: continue/kickstart-flavor-gaia
 ```
 
-
-
 ## Development and Deploy Tool: `kick`
 
 - Will work from any directory
@@ -61,7 +60,6 @@ from: continue/kickstart-flavor-gaia
 
 By default, kickstart will configure debuggers to send data to `10.10.10.10`. So 
 this ip should be added to your pc's networks.
-
 
 
 ## Building own flavors
