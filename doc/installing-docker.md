@@ -1,11 +1,34 @@
 # Installing Docker and setting up Debug-IP
 
 Instructions available for:
+- Windows 10
+    - Windows 10 Pro / Enterprise / Server
 - Ubuntu/Kubuntu
     - 16.04
     - 17.10
     - 18.04
     
+
+## Windows 10 Pro / Enterprise /Server
+
+> This will ***not*** work for ***Windows 10 Home*** due to a lack of HyperV support
+
+- Install Docker for windows from [dockerstore](https://www.docker.com/docker-windows)
+
+- Go to ***Settings*** > ***Update & Security*** > ***For developers*** and activate ***Developer mode***
+
+- Go to ***Control Panel*** > ***Programs*** and select ***Turn Windows features on or off***: 
+  Select (activate) ***Windows Subsystem for Linux (Beta)*** and reboot
+  
+- Click to start menu and type ***bash***, accept the Terms and Conditions.
+
+Within bash run
+
+```
+sudo apt-get install docker.io curl git
+
+```
+
 
 ## Ubuntu/Kubuntu 16.04, 17.10, 18.04
 
