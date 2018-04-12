@@ -59,6 +59,12 @@ KICKSTART_CURRENT_VERSION="1.1.0"
 
 
 
+if [ -e "$HOME/.kickstartconfig" ]
+then
+    echo "Loading $HOME/.kickstartconfig"
+    . $HOME/.kickstartconfig
+fi
+
 
 _usage() {
     echo -e $COLOR_NC "Usage: $0 [<command>]
@@ -156,6 +162,8 @@ ask_user() {
     esac
     exit 1;
 }
+
+
 
 
 DOCKER_OPT_PARAMS="";
