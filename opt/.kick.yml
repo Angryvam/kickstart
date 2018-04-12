@@ -1,5 +1,8 @@
 kick: 1
 
+from: "continue/kickstart"
+
+
 command:
   init:
   dev:

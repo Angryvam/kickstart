@@ -158,6 +158,20 @@ ask_user() {
 }
 
 
+DOCKER_OPT_PARAMS="";
+if [ -e "$HOME/.ssh" ]
+then
+    echo "Mounting $HOME/.ssh..."
+    DOCKER_OPT_PARAMS="-v $HOME/.ssh:/home/user/.ssh";
+fi
+
+if [ -e "$HOME/.gitconfig" ]
+then
+    echo "Mounting $HOME/.gitconfig..."
+    DOCKER_OPT_PARAMS="$DOCKER_OPT_PARAMS -v $HOME/.gitconfig:/home/user/.gitconfig";
+fi
+
+
 run_container() {
     echo -e $COLOR_GREEN"Loading container '$USE_PIPF_VERSION'..."
     docker pull "$USE_PIPF_VERSION"
@@ -171,6 +185,7 @@ run_container() {
         -e "DEV_UID=$UID"                               \
         -e "DEV_MODE=1"                                 \
         -p 80:4200                                      \
+        $DOCKER_OPT_PARAMS                              \
         --name $CONTAINER_NAME                          \
         $USE_PIPF_VERSION $ARGUMENT
 
