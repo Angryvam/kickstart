@@ -176,6 +176,13 @@ run_container() {
     echo -e $COLOR_GREEN"Loading container '$USE_PIPF_VERSION'..."
     docker pull "$USE_PIPF_VERSION"
 
+	if [ "$KICKSTART_WIN_PATH" != "" ]
+	then
+		# For Windows users: Rewrite Path of bash to Windows path
+		# Will work only on drive C:/
+		PROGPATH="${PROGPATH/\/mnt\/c\//$KICKSTART_WIN_PATH}"
+	fi
+
     docker rm $CONTAINER_NAME
     echo -e $COLOR_WHITE "==> [$0] STARTING CONTAINER (docker run): Running container in dev-mode..." $COLOR_NC
     docker run -it                                      \
