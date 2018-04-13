@@ -55,7 +55,7 @@ To select a special flavor select
 
 ```yaml
 version: 1
-from: continue/kickstart-flavor-gaia
+from: "continue/kickstart-flavor-gaia"
 ```
 
 ## Development and Deploy Tool: `kick`
