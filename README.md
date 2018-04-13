@@ -53,6 +53,20 @@ from: continue/kickstart-flavor-gaia
 - All paths relative to .kickstart.yml
 - Exec by default: `kick init`
 
+## System-wide config file
+
+Kickstart will read the user-config from:
+```
+~/.kickstartconfig
+```
+
+Available Options:
+
+```
+KICKSTART_PORT=80           # Change the Port 
+KICKSTART_WIN_PATH=         # If running on windows - map bash 
+```
+
 
 ## Defaults
 
