@@ -50,14 +50,18 @@ export COLOR_LIGHT_GRAY='\e[0;37m'
 command -v curl >/dev/null 2>&1 || { echo -e "$COLOR_LIGHT_RED I require curl but it's not installed (run: 'apt-get install curl').  Aborting.$COLOR_NC" >&2; exit 1; }
 command -v docker >/dev/null 2>&1 || { echo -e "$COLOR_LIGHT_RED I require docker but it's not installed (see http://docker.io).  Aborting.$COLOR_NC" >&2; exit 1; }
 
-KICKSTART_DOC_URL="https://github.com/c7lab/kickstart/"
-KICKSTART_UPGRADE_URL="https://raw.githubusercontent.com/c7lab/kickstart/master/opt/kickstart.sh"
-KICKSTART_RELEASE_NOTES_URL="https://raw.githubusercontent.com/c7lab/kickstart/master/opt/kickstart-release-notes.txt"
-KICKSTART_VERSION_URL="https://raw.githubusercontent.com/c7lab/kickstart/master/opt/kickstart-release.txt"
+_KICKSTART_DOC_URL="https://github.com/c7lab/kickstart/"
+_KICKSTART_UPGRADE_URL="https://raw.githubusercontent.com/c7lab/kickstart/master/opt/kickstart.sh"
+_KICKSTART_RELEASE_NOTES_URL="https://raw.githubusercontent.com/c7lab/kickstart/master/opt/kickstart-release-notes.txt"
+_KICKSTART_VERSION_URL="https://raw.githubusercontent.com/c7lab/kickstart/master/opt/kickstart-release.txt"
 
-KICKSTART_CURRENT_VERSION="1.1.0"
+_KICKSTART_CURRENT_VERSION="1.1.0"
 
-
+##
+# This variables can be overwritten by ~/.kickstartconfig
+#
+KICKSTART_WIN_PATH=""
+KICKSTART_PORT=80
 
 if [ -e "$HOME/.kickstartconfig" ]
 then
@@ -110,13 +114,13 @@ _print_header() {
   " $COLOR_YELLOW "
 +-------------------------------------------------------------------------------------------------------+
 | C7Lab Kickstart - DEVELOPER MODE                                                                      |
-| Version: $KICKSTART_CURRENT_VERSION
+| Version: $_KICKSTART_CURRENT_VERSION
 | Flavour: $USE_PIPF_VERSION (defined in 'from:'-section of .kick.yml)"
 
 
 
-    KICKSTART_NEWEST_VERSION=`curl -s "$KICKSTART_VERSION_URL"`
-    if [ "$KICKSTART_NEWEST_VERSION" != "$KICKSTART_CURRENT_VERSION" ]
+    KICKSTART_NEWEST_VERSION=`curl -s "$_KICKSTART_VERSION_URL"`
+    if [ "$KICKSTART_NEWEST_VERSION" != "$_KICKSTART_CURRENT_VERSION" ]
     then
         echo "|                                                           "
         echo "| UPDATE AVAILABLE: Head Version: $KICKSTART_NEWEST_VERSION"
@@ -227,7 +231,7 @@ then
     echo "# Run ./kickstart.sh to start a development-container for this project" >> $PROGPATH/.kick.yml
     echo "version: 1" >> $PROGPATH/.kick.yml
     echo 'from: "continue/kickstart"' >> $PROGPATH/.kick.yml
-    echo "File created. See $KICKSTART_DOC_URL for more information";
+    echo "File created. See $_KICKSTART_DOC_URL for more information";
     echo ""
     sleep 2
 fi
@@ -252,13 +256,13 @@ while [ "$#" -gt 0 ]; do
     --tag=*) USE_PIPF_VERSION="-t ${1#*=}"; shift 1;;
 
     --upgrade)
-        echo "Checking for updates from $KICKSTART_UPGRADE_URL..."
-        curl "$KICKSTART_RELEASE_NOTES_URL"
+        echo "Checking for updates from $_KICKSTART_UPGRADE_URL..."
+        curl "$_KICKSTART_RELEASE_NOTES_URL"
 
         ask_user "Do you want to upgrade?"
 
         echo "Writing to $0..."
-        curl "$KICKSTART_UPGRADE_URL" -o "$0"
+        curl "$_KICKSTART_UPGRADE_URL" -o "$0"
         echo "Done"
         echo "Calling on update trigger: $0 --on-after-update"
         $0 --on-after-upgrade
