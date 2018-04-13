@@ -24,8 +24,10 @@ Anleitung verfügbar für:
 - Gehen sie nun in die ***bash-Konsole*** und führen Sie folgendes aus:
 
 ```
-echo "export DOCKER_HOST=tcp://127.0.0.1:2375" >> ~/.kickstartconfig
-echo "export KICKSTART_WIN_PATH=C:/" >> ~/.kickstartconfig
+echo "KICKSTART_WIN_PATH=C:/" >> ~/.kickstartconfig
+echo "DOCKER_HOST=tcp://127.0.0.1:2375" >> ~/.kickstartconfig
+echo "DOCKER_TLS_VERFIY=0" >> ~/.kickstartconfig
+echo "DOCKER_CERT_PATH=0" >> ~/.kickstartconfig
 sudo apt-get update
 sudo apt-get install docker.io curl git
 ```
