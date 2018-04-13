@@ -26,7 +26,9 @@ ___(do you have ready to use containers - append it to this list)___
 ## Project setup: Kickstart
 
 **Download [kickstart.sh](https://raw.githubusercontent.com/c7lab/kickstart/master/opt/kickstart.sh)** and save
-it to your projects main directory:
+it to your projects main directory.
+
+**Download script**: (execute as user in your project-directory)
 
 ```bash
 curl -o kickstart.sh "https://raw.githubusercontent.com/c7lab/kickstart/master/opt/kickstart.sh" && chmod +x kickstart.sh
