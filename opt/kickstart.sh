@@ -203,7 +203,7 @@ run_container() {
         -e "DEV_TTYID=[MAIN]"                           \
         -e "DEV_UID=$UID"                               \
         -e "DEV_MODE=1"                                 \
-        -p 80:4200                                      \
+        -p $KICKSTART_PORT:4200                                      \
         $DOCKER_OPT_PARAMS                              \
         --name $CONTAINER_NAME                          \
         $USE_PIPF_VERSION $ARGUMENT
