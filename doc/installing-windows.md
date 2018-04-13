@@ -1,15 +1,4 @@
-# Installing Docker and setting up Debug-IP
-
-Instructions available for:
-- Windows 10
-    - Windows 10 Pro / Enterprise / Server
-- Ubuntu/Kubuntu
-    - 16.04
-    - 17.10
-    - 18.04
-    
-
-## Windows 10 Pro / Enterprise / Server
+# Windows 10 Pro / Enterprise / Server
 
 > This will ***not*** work for ***Windows 10 Home*** due to a lack of HyperV support
 
