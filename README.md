@@ -10,11 +10,20 @@
 ___(do you have ready to use containers - append it to this list)___
 
 
-## Quickstart with Kickstart
+## Documents index
 
-First of all, make sure [docker is correctly installed on your Linux/Windows10/MacOS desktop](doc/installing-docker.md) or follow our [german introduction](doc/installing-docker-ger.md).
+- **Setting up your environment**
+    - Configuring **Windows 10 Pro** 
+        - [Windows 10 Pro installation (EN)](doc/installing-windows.md)
+        - [Windows 10 Pro installation (DE) - might be outdated](doc/installing-windows-ger.md)
+        - [Windows 10 Pro Version history](doc/installing-windows-versions.md)
+    - Configuring **Ubuntu/Debian Linux** 
+        - [Ubuntu installation (EN)](installing-ubuntu.md)
 
-Download [kickstart.sh](https://raw.githubusercontent.com/c7lab/kickstart/master/opt/kickstart.sh) and save
+
+## Project setup: Kickstart
+
+**Download [kickstart.sh](https://raw.githubusercontent.com/c7lab/kickstart/master/opt/kickstart.sh)** and save
 it to your projects main directory:
 
 ```bash

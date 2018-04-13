@@ -215,7 +215,6 @@ run_container() {
     then
         echo -e $COLOR_RED
         echo "[kickstart.sh][FAIL]: Container startup failed."
-        echo "[kickstart.sh][FAIL]: Make sure you have Port 80 free and docker installed correctly."
         echo -e $COLOR_NC
         exit $status
     fi;
