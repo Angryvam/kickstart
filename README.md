@@ -30,8 +30,8 @@ ___(do you have ready to use containers - append it to this list)___
 curl -o kickstart.sh "https://raw.githubusercontent.com/c7lab/kickstart/master/opt/kickstart.sh" && chmod +x kickstart.sh
 ```
 
-__It will save [kickstart.sh](https://raw.githubusercontent.com/c7lab/kickstart/master/opt/kickstart.sh) to the
-current directory and set the executable bit.__
+The script will save [kickstart.sh](https://raw.githubusercontent.com/c7lab/kickstart/master/opt/kickstart.sh) to the
+current directory and set the executable bit.
 
 **Run kickstart:**
 ```bash
