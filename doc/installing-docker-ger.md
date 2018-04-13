@@ -24,8 +24,8 @@ Anleitung verfügbar für:
 - Gehen sie nun in die ***bash-Konsole*** und führen Sie folgendes aus:
 
 ```
-echo "export DOCKER_HOST=tcp://127.0.0.1:2375" >> ~/.bashrc
-echo "export KICKSTART_WIN_PATH=C:/" >> ~/.bashrc
+echo "export DOCKER_HOST=tcp://127.0.0.1:2375" >> ~/.kickstartconfig
+echo "export KICKSTART_WIN_PATH=C:/" >> ~/.kickstartconfig
 sudo apt-get update
 sudo apt-get install docker.io curl git
 ```
