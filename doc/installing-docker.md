@@ -9,7 +9,7 @@ Instructions available for:
     - 18.04
     
 
-## Windows 10 Pro / Enterprise /Server
+## Windows 10 Pro / Enterprise / Server
 
 > This will ***not*** work for ***Windows 10 Home*** due to a lack of HyperV support
 
@@ -22,17 +22,20 @@ Instructions available for:
 - Go to ***Control Panel*** > ***Programs*** and select ***Turn Windows features on or off***: 
   Select (activate) ***Windows Subsystem for Linux (Beta)*** and reboot
   
+- Download and start ***ubuntu*** by following this [link](https://aka.ms/wslstore)
+  
 - Click to start menu and type ***bash***, accept the Terms and Conditions.
 
-- Turn of  W3SVC (World Wide Web Publishing Service): Search for ***Services***, scroll down and deactivate this service.
+- Turn off  W3SVC (World Wide Web Publishing Service): Search for ***Services***, scroll down and deactivate this service (if it's active).
 
-- Deactivate HTTP.SYS service on port 80 by running `netsh http add iplisten ipaddress=::`
+- Deactivate HTTP.SYS service on port 80 by running `netsh http add iplisten ipaddress=::` in ***Windows PowerShell***
 
 Within bash run
 
 ```
 echo "export DOCKER_HOST=tcp://127.0.0.1:2375" >> ~/.kickstartconfig
 echo "export KICKSTART_WIN_PATH=C:/" >> ~/.kickstartconfig
+sudo apt-get update
 sudo apt-get install docker.io curl git
 ```
 
