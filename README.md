@@ -13,12 +13,14 @@ ___(do you have ready to use containers - append it to this list)___
 ## Documents index
 
 - **Setting up your environment**
+    - Configuring **Ubuntu/Debian Linux** 
+        - [Ubuntu installation (EN)](doc/installing-ubuntu-debian.md)
+    
     - Configuring **Windows 10 Pro** 
         - [Windows 10 Pro installation (EN)](doc/installing-windows.md)
         - [Windows 10 Pro installation (DE) - might be outdated](doc/installing-windows-ger.md)
         - [Windows 10 Pro Version history](doc/installing-windows-versions.md)
-    - Configuring **Ubuntu/Debian Linux** 
-        - [Ubuntu installation (EN)](installing-ubuntu.md)
+    
 
 
 ## Project setup: Kickstart
