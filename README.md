@@ -29,18 +29,16 @@ ___(do you have ready to use containers - append it to this list)___
 it to your projects main directory.
 
 **Download script**: (execute as user in your project-directory)
-
 ```bash
 curl -o kickstart.sh "https://raw.githubusercontent.com/c7lab/kickstart/master/opt/kickstart.sh" && chmod +x kickstart.sh
 ```
 
 Run kickstart:
-
 ```bash
 ./kickstart.sh
 ```
 
-It will create an empty `.kick.yml` file in the current directory. You might edit
+Kickstart will create an empty `.kick.yml` file in the current directory. You might want to edit
 at least the `from:`-Line.
 
 
