@@ -62,6 +62,7 @@ _KICKSTART_CURRENT_VERSION="1.1.0"
 #
 KICKSTART_WIN_PATH=""
 KICKSTART_PORT=80
+KICKSTART_DOCKER_OPTS=""
 
 if [ -e "$HOME/.kickstartconfig" ]
 then
@@ -170,11 +171,11 @@ ask_user() {
 
 
 
-DOCKER_OPT_PARAMS="";
+DOCKER_OPT_PARAMS=$KICKSTART_DOCKER_OPTS;
 if [ -e "$HOME/.ssh" ]
 then
     echo "Mounting $HOME/.ssh..."
-    DOCKER_OPT_PARAMS="-v $HOME/.ssh:/home/user/.ssh";
+    DOCKER_OPT_PARAMS="$DOCKER_OPT_PARAMS -v $HOME/.ssh:/home/user/.ssh";
 fi
 
 if [ -e "$HOME/.gitconfig" ]
