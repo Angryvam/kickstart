@@ -12,7 +12,7 @@ ___(do you have ready to use containers - append it to this list)___
 
 ## Quickstart with Kickstart
 
-First of all, make sure [docker is correctly installed on your Linux/Windows10/MacOS desktop](doc/installing-docker.md) or follow our [german introduction](doc/).
+First of all, make sure [docker is correctly installed on your Linux/Windows10/MacOS desktop](doc/installing-docker.md) or follow our [german introduction](doc/installing-docker-ger.md).
 
 Download [kickstart.sh](https://raw.githubusercontent.com/c7lab/kickstart/master/opt/kickstart.sh) and save
 it to your projects main directory:
