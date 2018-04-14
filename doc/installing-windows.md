@@ -21,14 +21,31 @@
 
 Within bash run
 
+## The manual way
+
+Follow these steps if you don't want to run our automatic setup:
+
 ```
+echo "export DOCKER_HOST=tcp://127.0.0.1:2375" >> ~/.bashrc
 echo "KICKSTART_WIN_PATH=C:/" >> ~/.kickstartconfig
-echo "DOCKER_HOST=tcp://127.0.0.1:2375" >> ~/.kickstartconfig
+
 sudo apt-get update
-sudo apt-get install docker.io curl git
+sudo apt-get install curl git
+```
+...and follow the docker-cd [installation guide](https://docs.docker.com/install/linux/docker-ce/ubuntu/).
+
+**Do not install docker.io using ubuntu's repositories. The client won't be able to speak to the server**
+
+## Automatic setup script
+
+Launch `bash` in command dialog (or windows search). Copy and past 
+the installer: [see the source](installer/win-ubuntu-docker-install.sh)
+
+```
+sudo apt update && sudo apt install curl && bash < (curl -s "https://raw.githubusercontent.com/c7lab/kickstart/master/doc/intaller/win-ubuntu-docker-install.sh")
 ```
 
-You should now be able to execute `docker ps` without error.
+You should now be able to execute `docker run hello-world` without error.
 
 In case of trouble, see [Windows 10 pro notes](installing-windows-versions.md).
 
@@ -36,4 +53,9 @@ In case of trouble, see [Windows 10 pro notes](installing-windows-versions.md).
 
 ## Other Operating Systems
 
-Please append Instructions for other distributions.
+Tested versions of windows:
+
+| Date       | Windows    | Docker     | Working |
+|------------|------------|------------|---------|
+| 2018-04-14 | 10.0.16299 | 18.03.0-ce | yes     |
+
