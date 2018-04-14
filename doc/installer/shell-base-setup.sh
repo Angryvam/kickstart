@@ -31,8 +31,11 @@ sudo apt-get install git
 ## Secure keygen according to https://security.stackexchange.com/questions/143442/what-are-ssh-keygen-best-practices
 ssh-keygen -t ed25519 -a 100
 
-git config user.email
-git config user.name
+# Configure git
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+git config --global push.default simple
+
 
 echo "Add this to your github/gitlab accounts SSH-Keys:"
 cat ~/.ssh/id_ed25519.pub
