@@ -62,6 +62,8 @@ _KICKSTART_CURRENT_VERSION="1.1.0"
 #
 KICKSTART_WIN_PATH=""
 KICKSTART_PORT=80
+KICKSTART_DOCKER_OPTS=""
+KICKSTART_DOCKER_RUN_OPTS=""
 
 if [ -e "$HOME/.kickstartconfig" ]
 then
@@ -170,11 +172,11 @@ ask_user() {
 
 
 
-DOCKER_OPT_PARAMS="";
+DOCKER_OPT_PARAMS=$KICKSTART_DOCKER_RUN_OPTS;
 if [ -e "$HOME/.ssh" ]
 then
     echo "Mounting $HOME/.ssh..."
-    DOCKER_OPT_PARAMS="-v $HOME/.ssh:/home/user/.ssh";
+    DOCKER_OPT_PARAMS="$DOCKER_OPT_PARAMS -v $HOME/.ssh:/home/user/.ssh";
 fi
 
 if [ -e "$HOME/.gitconfig" ]
@@ -197,13 +199,13 @@ run_container() {
 
     docker rm $CONTAINER_NAME
     echo -e $COLOR_WHITE "==> [$0] STARTING CONTAINER (docker run): Running container in dev-mode..." $COLOR_NC
-    docker run -it                                      \
+    docker $KICKSTART_DOCKER_OPTS run -it                                      \
         -v "$PROGPATH/:/opt/"                           \
         -e "DEV_CONTAINER_NAME=$CONTAINER_NAME"         \
         -e "DEV_TTYID=[MAIN]"                           \
         -e "DEV_UID=$UID"                               \
         -e "DEV_MODE=1"                                 \
-        -p 80:4200                                      \
+        -p $KICKSTART_PORT:4200                                      \
         $DOCKER_OPT_PARAMS                              \
         --name $CONTAINER_NAME                          \
         $USE_PIPF_VERSION $ARGUMENT
@@ -213,7 +215,6 @@ run_container() {
     then
         echo -e $COLOR_RED
         echo "[kickstart.sh][FAIL]: Container startup failed."
-        echo "[kickstart.sh][FAIL]: Make sure you have Port 80 free and docker installed correctly."
         echo -e $COLOR_NC
         exit $status
     fi;

@@ -10,24 +10,35 @@
 ___(do you have ready to use containers - append it to this list)___
 
 
-## Quickstart with Kickstart
+## Documents index
 
-First of all, make sure [docker is correctly installed on your Linux/Windows10/MacOS desktop](doc/installing-docker.md).
+- **Setting up your environment**
+    - Configuring **Ubuntu/Debian Linux** 
+        - [Ubuntu installation (EN)](doc/installing-ubuntu-debian.md)
+    
+    - Configuring **Windows 10 Pro** 
+        - [Windows 10 Pro installation (EN)](doc/installing-windows.md)
+        - [Windows 10 Pro installation (DE) - might be outdated](doc/installing-windows-ger.md)
+        - [Windows 10 Pro Version history](doc/installing-windows-versions.md)
+    
 
-Download [kickstart.sh](https://raw.githubusercontent.com/c7lab/kickstart/master/opt/kickstart.sh) and save
-it to your projects main directory:
 
+## Project setup: Kickstart
+
+**Copy'n'Paste installer script**: (execute as user in your project-directory)
 ```bash
 curl -o kickstart.sh "https://raw.githubusercontent.com/c7lab/kickstart/master/opt/kickstart.sh" && chmod +x kickstart.sh
 ```
 
-Run kickstart:
+The script will save [kickstart.sh](https://raw.githubusercontent.com/c7lab/kickstart/master/opt/kickstart.sh) to the
+current directory and set the executable bit.
 
+**Run kickstart:**
 ```bash
 ./kickstart.sh
 ```
 
-It will create an empty `.kick.yml` file in the current directory. You might edit
+Kickstart will create an empty `.kick.yml` file in the current directory. You might want to edit
 at least the `from:`-Line.
 
 
@@ -44,7 +55,7 @@ To select a special flavor select
 
 ```yaml
 version: 1
-from: continue/kickstart-flavor-gaia
+from: "continue/kickstart-flavor-gaia"
 ```
 
 ## Development and Deploy Tool: `kick`
