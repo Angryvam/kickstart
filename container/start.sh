@@ -46,7 +46,7 @@ else
     echo "[entry.sh] | ProjectName: $DEV_CONTAINER_NAME"
     echo "[entry.sh] +----------------------------------------------------+"
     echo "Running prepare-start.sh"
-    /kickstart/container/prepare-start.sh
+    . /kickstart/container/prepare-start.sh
 
     echo "Running flavor-start-services.sh";
     . /root/flavor/flavor-start-services.sh
@@ -85,8 +85,6 @@ else
     echo ""
     echo -e $COLOR_GREEN"Container ready..."
     echo -e $COLOR_NC
-
-
 
     if [ "$RUN_SHELL" == "1" ]
     then
