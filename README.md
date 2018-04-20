@@ -87,6 +87,24 @@ By default, kickstart will configure debuggers to send data to `10.10.10.10`. So
 this ip should be added to your pc's networks.
 
 
+## Building containers
+
+You can build ready-to-deploy containers with kickstart. Just add a `Dockerfile`
+to your Project-Folder
+
+```
+FROM continue/kickstart-test-gaia
+
+ENV DEV_CONTAINER_NAME="some_name"
+ENV HTTP_PORT=80
+
+ADD / /opt
+RUN ["/kickstart/container/start.sh", "build"]
+
+EXPOSE 80
+ENTRYPOINT ["/kickstart/container/start.sh", "standalone"]
+```
+
 ## Building own flavors
 
 Feel free to build your own flavors.
