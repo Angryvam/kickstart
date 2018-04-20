@@ -10,7 +10,6 @@ function on_error () {
     exit 1
 }
 
-
 COLOR_NC='\e[0m' # No Color
 COLOR_WHITE='\e[1;37m'
 COLOR_BLACK='\e[0;30m'
@@ -29,95 +28,71 @@ COLOR_YELLOW='\e[1;33m'
 COLOR_GRAY='\e[0;30m'
 COLOR_LIGHT_GRAY='\e[0;37m'
 
-echo -e $COLOR_YELLOW
-echo "[entry.sh] +----------------------------------------------------+"
-echo "[entry.sh] | KICKSTART-CONTAINER STARTUP!                       |"
-echo "[entry.sh] +----------------------------------------------------+"
-echo "[entry.sh] | Running .docker/entry.sh inside container"
-echo "[entry.sh] | Parameters.: $@"
-echo "[entry.sh] | Dev UID....: $DEV_UID"
-echo "[entry.sh] | ProjectName: $DEV_CONTAINER_NAME"
-echo "[entry.sh] +----------------------------------------------------+"
 
-echo "[entry.sh] Running /kickstart/container/flavor-start.sh"
-echo -e $COLOR_NC
-
-echo "[entry.sh] + kick kick_to_env"
-envtoset=`kick kick_to_env`
-echo $envtoset
-export $envtoset;
-
-if [ "$KICK_PRESET" != "" ]
+if [ "$1" == "standalone" ]
 then
-    echo "[entry.sh] Loading preset $KICK_PRESET";
-    presetFile="/root/flavor/presets/$KICK_PRESET.sh"
-    if [ ! -e $presetFile ]
+    echo "Running kickstart standalone mode..."
+    . /root/flavor/flavor-start-services.sh
+    /bin/bash
+    exit 0
+else
+    echo -e $COLOR_YELLOW
+    echo "[entry.sh] +----------------------------------------------------+"
+    echo "[entry.sh] | KICKSTART-CONTAINER STARTUP!                       |"
+    echo "[entry.sh] +----------------------------------------------------+"
+    echo "[entry.sh] | Running start.sh inside container"
+    echo "[entry.sh] | Parameters.: $@"
+    echo "[entry.sh] | Dev UID....: $DEV_UID"
+    echo "[entry.sh] | ProjectName: $DEV_CONTAINER_NAME"
+    echo "[entry.sh] +----------------------------------------------------+"
+    echo "Running prepare-start.sh"
+    /kickstart/container/prepare-start.sh
+
+    echo "Running flavor-start-services.sh";
+    . /root/flavor/flavor-start-services.sh
+
+    echo "[entry.sh] + kick init"
+    sudo -E -s -u user kick init
+
+    RUN_SHELL=1
+    if [ "$1" == "run" ]
     then
-        echo "Error: Preset $KICK_PRESET (selected in .kick.yml - preset): File not found: $presetFile";
-        exit 1;
-    fi
-    . $presetFile
-fi
+        RUN_SHELL=0
+        shift 1;
+    fi;
+
+    if [ "$1" == "build" ]
+    then
+        echo "BUILD MODE - Running container once..."
+        RUN_SHELL=0
+        shift 1;
+    fi;
 
 
-. /root/flavor/flavor-start.sh
+    if [ "$1" != '' ]
+    then
+        echo "[entry.sh] + kick $@"
+        sudo -E -s -u user kick $@
+    fi;
+
+    echo -e $COLOR_YELLOW
+    if [ -f /opt/README.msg ]
+    then
+        echo "-------------------------- Message from README.msg -----------------------------"
+        cat /opt/README.msg
+    fi;
+
+    echo ""
+    echo -e $COLOR_GREEN"Container ready..."
+    echo -e $COLOR_NC
 
 
-echo -e $COLOR_LIGHT_CYAN"[entry.sh][DEVELOPMENT MODE] Changing userid of 'user' to $DEV_UID"
 
-usermod -u $DEV_UID user
-chown -R user /home/user
-export HOME=/home/user
-echo "user   ALL = (ALL) NOPASSWD:   ALL" >> /etc/sudoers
+    if [ "$RUN_SHELL" == "1" ]
+    then
+        sudo -E -s -u user /bin/bash
+    fi;
+    echo "[entry.sh] exit; You are now leaving the container. Goodbye."
+    exit
 
-
-
-
-
-echo "[entry.sh] + kick init"
-sudo -E -s -u user kick init
-
-RUN_SHELL=1
-if [ "$1" == "run" ]
-then
-    RUN_SHELL=0
-    shift 1;
 fi;
-
-if [ "$1" == "build" ]
-then
-    echo "BUILD MODE - Running container once..."
-    RUN_SHELL=0
-    shift 1;
-fi;
-
-
-if [ "$1" != '' ]
-then
-    echo "[entry.sh] + kick $@"
-    sudo -E -s -u user kick $@
-fi;
-
-echo -e $COLOR_YELLOW
-if [ -f /opt/README.msg ]
-then
-    echo "-------------------------- Message from README.msg -----------------------------"
-    cat /opt/README.msg
-fi;
-
-echo ""
-echo -e $COLOR_GREEN"Container ready..."
-echo -e $COLOR_NC
-
-
-
-if [ "$RUN_SHELL" == "1" ]
-then
-    sudo -E -s -u user /bin/bash
-fi;
-echo "[entry.sh] exit; You are now leaving the container. Goodbye."
-exit
-
-
-
-
