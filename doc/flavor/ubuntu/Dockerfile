@@ -12,6 +12,9 @@ RUN /root/flavor/installer-debian.sh
 ENV TIMEZONE Europe/Berlin
 ENV KICKSTART_HYPERVISE_HOST="http://kickstart-hypervise/"
 
+# Default Port - Allow user to bind to unpriviledged ports
+ENV HTTP_HOST "4200"
+
 ENV DEV_MODE "0"
 ENV DEV_CONTAINER_NAME "unnamed"
 ENV DEV_UID "1000"

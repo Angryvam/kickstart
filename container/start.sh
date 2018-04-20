@@ -84,6 +84,14 @@ then
     shift 1;
 fi;
 
+if [ "$1" == "build" ]
+then
+    echo "BUILD MODE - Running container once..."
+    RUN_SHELL=0
+    shift 1;
+fi;
+
+
 if [ "$1" != '' ]
 then
     echo "[entry.sh] + kick $@"
