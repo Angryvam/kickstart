@@ -1,5 +1,37 @@
 # Setting up Ubuntu/Kubuntu 16.04, 17.10, 18.04 for kickstart
 
+## Debain only: Setup testing repository (stetch / debian 9)
+
+The package `docker.io` is only included in debians `testing` branch.
+
+To only install packages from `testing` if required, edit your apt-preferences:
+
+Edit `/etc/apt/preferences.d/000` to
+
+```
+Package: *
+Pin: release a=stable
+Pin-Priority: 700
+
+Package: * 
+Pin: release a=testing
+Pin-Priority: 650
+```
+
+And add the testing-sorurces to `/etc/apt/sources.list`:
+
+```
+deb http://mirror.eu.oneandone.net/debian/ unstable main contrib non-free
+```
+
+```
+apt update
+apt install docker.io curl
+gpasswd -a yourUserName docker
+```
+
+## Install Docker and setup (both Ubuntu/Debian)
+
 As user run:
 ```bash
 sudo apt-get install docker.io curl
