@@ -93,15 +93,15 @@ You can build ready-to-deploy containers with kickstart. Just add a `Dockerfile`
 to your Project-Folder
 
 ```
-FROM continue/kickstart-test-gaia
+FROM continue/kickstart-flavor-gaia
 
 ENV DEV_CONTAINER_NAME="some_name"
 ENV HTTP_PORT=80
 
 ADD / /opt
+RUN ["bash", "-c",  "chown -R user /opt"]
 RUN ["/kickstart/container/start.sh", "build"]
 
-EXPOSE 80
 ENTRYPOINT ["/kickstart/container/start.sh", "standalone"]
 ```
 
