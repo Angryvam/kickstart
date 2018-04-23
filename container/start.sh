@@ -33,6 +33,10 @@ if [ "$1" == "standalone" ]
 then
     echo "Running kickstart standalone mode..."
     . /root/flavor/flavor-start-services.sh
+
+    echo "[entry.sh] + kick run"
+    sudo -E -s -u user kick run
+
     /bin/bash
     exit 0
 else
