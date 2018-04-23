@@ -37,7 +37,11 @@ then
     echo "[entry.sh] + kick run"
     sudo -E -s -u user kick run
 
-    /bin/bash
+    while [ true ]
+    do
+        echo "Service running... (sleep 1200)"
+        sleep 1200
+    done
     exit 0
 else
     echo -e $COLOR_YELLOW
