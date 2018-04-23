@@ -58,6 +58,9 @@ else
     echo "[entry.sh] + kick init"
     sudo -E -s -u user kick init
 
+    echo "[entry.sh] + kick run"
+    sudo -E -s -u user kick run
+
     RUN_SHELL=1
     if [ "$1" == "run" ]
     then
