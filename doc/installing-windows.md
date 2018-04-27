@@ -42,7 +42,7 @@ Launch `bash` in command dialog (or windows search). Copy and past
 the installer: [see the source](installer/win-ubuntu-docker-install.sh)
 
 ```
-sudo apt update && sudo apt install curl && bash < curl -s "https://raw.githubusercontent.com/c7lab/kickstart/master/doc/intaller/win-ubuntu-docker-install.sh"
+sudo apt update && sudo apt install curl && bash < curl  -H 'Cache-Control: no-cache' -s "https://raw.githubusercontent.com/c7lab/kickstart/master/doc/intaller/win-ubuntu-docker-install.sh"
 ```
 
 You should now be able to execute `docker run hello-world` without error.

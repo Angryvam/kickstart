@@ -3,7 +3,7 @@
 # Installer script to install and configure docker
 # on Windows 10 Pro Ubuntu Shell
 #
-
+set -x
 
 trap 'on_error $LINENO' ERR;
 _PROGNAME=$(basename $0)
