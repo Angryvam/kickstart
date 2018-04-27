@@ -15,7 +15,7 @@ function on_error () {
 }
 
 
-if [ $(`whoami`)=="root" ]
+if [ `whoami` = "root" ]
 then
     echo "This script must not run as root! (run without sudo)"
     exit 1
