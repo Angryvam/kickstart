@@ -50,9 +50,10 @@ sudo apt-get -y install docker-ce
 
 # Setup the docker-cli connection to use native windows docker server
 echo "export DOCKER_HOST=tcp://127.0.0.1:2375" >> ~/.bashrc
+export DOCKER_HOST=tcp://127.0.0.1:2375
 
 # Setup kickstart path mapping
-echo "KICKSTART_WIN_PATH=C:/" >> ~/.kickstartconfig
+echo "KICKSTART_WIN_PATH=C:/" > ~/.kickstartconfig
 
 # Testrun
 docker run hello-world
