@@ -50,6 +50,13 @@ You should now be able to execute `docker run hello-world` without error.
 In case of trouble, see [Windows 10 pro notes](installing-windows-versions.md).
 
 
+Create a SSH Key
+```
+ssh-keygen -o -a 150 -t ed25519
+cp ~/.ssh/id* /mnt/c/Users/[yourUserName]
+```
+
+
 
 ## Other Operating Systems
 
