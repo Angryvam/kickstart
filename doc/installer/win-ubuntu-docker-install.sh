@@ -33,7 +33,7 @@ sudo apt-get -y install \
     software-properties-common
 
 # Add Docker's official PGP key
-sudo curl -fsSL "https://download.docker.com/linux/ubuntu/gpg" | apt-key add -
+sudo bash -c "curl -fsSL "https://download.docker.com/linux/ubuntu/gpg" | apt-key add -"
 
 # Add Docker's stable repository
 sudo add-apt-repository \
