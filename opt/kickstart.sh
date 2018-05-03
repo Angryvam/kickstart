@@ -47,8 +47,20 @@ export COLOR_YELLOW='\e[1;33m'
 export COLOR_GRAY='\e[0;30m'
 export COLOR_LIGHT_GRAY='\e[0;37m'
 
+if [ "$DEV_CONTAINER_NAME" != "" ]
+then
+    echo -e $COLOR_RED "\n[ERR] Are you trying to run kickstart.sh from inside a kickstart container?!"
+    echo "(Detected DEV_CONTAINER_NAME is set in environment)"
+    echo -e $COLOR_NC
+    exit 4;
+fi;
+
 command -v curl >/dev/null 2>&1 || { echo -e "$COLOR_LIGHT_RED I require curl but it's not installed (run: 'apt-get install curl').  Aborting.$COLOR_NC" >&2; exit 1; }
 command -v docker >/dev/null 2>&1 || { echo -e "$COLOR_LIGHT_RED I require docker but it's not installed (see http://docker.io).  Aborting.$COLOR_NC" >&2; exit 1; }
+
+
+
+
 
 _KICKSTART_DOC_URL="https://github.com/c7lab/kickstart/"
 _KICKSTART_UPGRADE_URL="https://raw.githubusercontent.com/c7lab/kickstart/master/opt/kickstart.sh"
