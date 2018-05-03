@@ -140,15 +140,33 @@ _print_header() {
 run_shell() {
    echo -e $COLOR_CYAN;
    echo "[kickstart.sh] Container '$CONTAINER_NAME' already running"
-   echo "===> [kickstart.sh] Opening new shell: "
-   echo -e $COLOR_NC
+   echo "Do you want to start a shell(s), kill (k), or abort (a)?"
+   echo "";
+   read -r -p "Your choice: (s)hell, (k)ill, (a)bort?:" choice
+   case "$choice" in
+      s|S)
+        echo "===> [kickstart.sh] Opening new shell: "
+        echo -e $COLOR_NC
 
-   docker exec -it --user user -e "DEV_TTYID=[SUB]" $CONTAINER_NAME /bin/bash
+        docker exec -it --user user -e "DEV_TTYID=[SUB]" $CONTAINER_NAME /bin/bash
 
-   echo -e $COLOR_CYAN;
-   echo "<=== [kickstart.sh] Leaving container."
-   echo -e $COLOR_NC
-   exit
+        echo -e $COLOR_CYAN;
+        echo "<=== [kickstart.sh] Leaving container."
+        echo -e $COLOR_NC
+        exit
+        ;;
+      k|K)
+        echo "Killing container $CONTAINER_NAME..."
+        docker kill $CONTAINER_NAME
+        return 0;
+        ;;
+
+      *)
+        echo 'Response not valid'
+        exit 3;
+        ;;
+
+    esac
 }
 
 
