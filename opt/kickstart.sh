@@ -55,7 +55,7 @@ _KICKSTART_UPGRADE_URL="https://raw.githubusercontent.com/c7lab/kickstart/master
 _KICKSTART_RELEASE_NOTES_URL="https://raw.githubusercontent.com/c7lab/kickstart/master/opt/kickstart-release-notes.txt"
 _KICKSTART_VERSION_URL="https://raw.githubusercontent.com/c7lab/kickstart/master/opt/kickstart-release.txt"
 
-_KICKSTART_CURRENT_VERSION="1.1.0"
+_KICKSTART_CURRENT_VERSION="1.1.1"
 
 ##
 # This variables can be overwritten by ~/.kickstartconfig
