@@ -42,12 +42,19 @@ Launch `bash` in command dialog (or windows search). Copy and past
 the installer: [see the source](installer/win-ubuntu-docker-install.sh)
 
 ```
-sudo apt update && sudo apt install curl && bash < (curl -s "https://raw.githubusercontent.com/c7lab/kickstart/master/doc/intaller/win-ubuntu-docker-install.sh")
+sudo apt update && sudo apt install curl && bash < curl  -H 'Cache-Control: no-cache' -s "https://raw.githubusercontent.com/c7lab/kickstart/master/doc/intaller/win-ubuntu-docker-install.sh"
 ```
 
 You should now be able to execute `docker run hello-world` without error.
 
 In case of trouble, see [Windows 10 pro notes](installing-windows-versions.md).
+
+
+Create a SSH Key (and copy it to windows user directory)
+```
+ssh-keygen -o -a 150 -t ed25519
+cp ~/.ssh/id_ed25519* /mnt/c/Users/[yourUserName]
+```
 
 
 

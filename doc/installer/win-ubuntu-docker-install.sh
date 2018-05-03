@@ -3,7 +3,7 @@
 # Installer script to install and configure docker
 # on Windows 10 Pro Ubuntu Shell
 #
-
+set -x
 
 trap 'on_error $LINENO' ERR;
 _PROGNAME=$(basename $0)
@@ -15,7 +15,7 @@ function on_error () {
 }
 
 
-if [ $(`whoami`)=="root" ]
+if [ `whoami` = "root" ]
 then
     echo "This script must not run as root! (run without sudo)"
     exit 1
@@ -33,7 +33,7 @@ sudo apt-get -y install \
     software-properties-common
 
 # Add Docker's official PGP key
-sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+sudo bash -c "curl -fsSL "https://download.docker.com/linux/ubuntu/gpg" | apt-key add -"
 
 # Add Docker's stable repository
 sudo add-apt-repository \
@@ -50,9 +50,10 @@ sudo apt-get -y install docker-ce
 
 # Setup the docker-cli connection to use native windows docker server
 echo "export DOCKER_HOST=tcp://127.0.0.1:2375" >> ~/.bashrc
+export DOCKER_HOST=tcp://127.0.0.1:2375
 
 # Setup kickstart path mapping
-echo "KICKSTART_WIN_PATH=C:/" >> ~/.kickstartconfig
+echo "KICKSTART_WIN_PATH=C:/" > ~/.kickstartconfig
 
 # Testrun
 docker run hello-world
