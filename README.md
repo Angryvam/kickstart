@@ -105,7 +105,7 @@ RUN ["/kickstart/container/start.sh", "build"]
 ENTRYPOINT ["/kickstart/container/start.sh", "standalone"]
 ```
 
-Interval: A `kick interval` will be triggered every second.
+Interval: A `kick interval` will be triggered every second (synchronous).
 
 To save cpu-time you could add this to your `.kick.yml`
 ```yaml

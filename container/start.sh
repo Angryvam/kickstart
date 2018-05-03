@@ -39,7 +39,7 @@ then
 
     ## Keep the container running
     echo "Service running..."
-    echo "[entry.sh] + kick interval > /tmp/last_interval.out (interval 5 sec)"
+    echo "[entry.sh] + kick interval > /tmp/last_interval.out (interval: 1sec)"
     while [ true ]
     do
         set +e
