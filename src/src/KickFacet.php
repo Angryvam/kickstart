@@ -84,7 +84,7 @@ class KickFacet
 
 
         if ( ! $value = access($this->config, ["command", $cmd])) {
-            if (in_array($cmd, ["init", "dev", "run"])) {
+            if (in_array($cmd, ["init", "dev", "run", "interval"])) {
                 Out::warn("No command defined for '$cmd': Ignore!");
                 return true;
             }

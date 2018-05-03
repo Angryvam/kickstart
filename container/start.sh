@@ -38,10 +38,13 @@ then
     sudo -E -s -u user kick run
 
     ## Keep the container running
+    echo "Service running..."
+    echo "[entry.sh] + kick interval > /tmp/last_interval.out (interval 5 sec)"
     while [ true ]
     do
-        echo "Service running... (sleep 1200)"
-        sleep 1200
+        set +e
+        sudo -E -s -u user kick interval > /tmp/last_interval.out
+        sleep 5
     done
     exit 0
 else
