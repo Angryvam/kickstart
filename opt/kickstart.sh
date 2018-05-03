@@ -139,16 +139,33 @@ _print_header() {
 
 run_shell() {
    echo -e $COLOR_CYAN;
-   echo "[kickstart.sh] Container '$CONTAINER_NAME' already running"
-   echo "Do you want to start a shell(s), kill (k), or abort (a)?"
-   echo "";
-   read -r -p "Your choice: (s)hell, (k)ill, (a)bort?:" choice
+
+
+   if [ `docker ps | grep $CONTAINER_NAME | wc -l` -gt 0 ]
+   then
+        echo "[kickstart.sh] Container '$CONTAINER_NAME' already running"
+        echo "Starting shell... (please press enter)"
+        echo "";
+        docker exec -it --user user -e "DEV_TTYID=[SUB]" $CONTAINER_NAME /bin/bash
+        echo -e $COLOR_CYAN;
+        echo "<=== [kickstart.sh] Leaving container."
+        echo -e $COLOR_NC
+        exit 0;
+   fi
+
+   echo "[kickstart.s] Another container is already running!"
+   docker ps
+   echo ""
+   read -r -p "Your choice: (i)gnore, (s)hell, (k)ill, (a)bort?:" choice
    case "$choice" in
+      i|I)
+        return 0;
+        ;;
       s|S)
         echo "===> [kickstart.sh] Opening new shell: "
         echo -e $COLOR_NC
 
-        docker exec -it --user user -e "DEV_TTYID=[SUB]" $CONTAINER_NAME /bin/bash
+        docker exec -it --user user -e "DEV_TTYID=[SUB]" `docker ps | grep "/kickstart/" | cut -d" " -f1` /bin/bash
 
         echo -e $COLOR_CYAN;
         echo "<=== [kickstart.sh] Leaving container."
@@ -156,8 +173,8 @@ run_shell() {
         exit
         ;;
       k|K)
-        echo "Killing container $CONTAINER_NAME..."
-        docker kill $CONTAINER_NAME
+        echo "Killing running kickstart containers..."
+        docker kill `docker ps | grep "/kickstart/" | cut -d" " -f1`
         return 0;
         ;;
 
@@ -306,7 +323,7 @@ done
 
 ARGUMENT=$@;
 _print_header
-if [ `docker ps | grep "$CONTAINER_NAME" | wc -l` -gt 0 ]
+if [ `docker ps | grep "/kickstart/" | wc -l` -gt 0 ]
 then
     run_shell
 fi;
